@@ -35,6 +35,14 @@ public partial class SamplePointSpawnSystem : SystemBase
             }
         }
 
+        // Option data singleton
+        var opt = new SamplePointOptions() 
+          { PointRadius = config.PointRadius,
+            RowCount = config.RowCount };
+        var singleton = manager.CreateEntity();
+        manager.AddComponent<SamplePointOptions>(singleton);
+        SystemAPI.SetComponent(singleton, opt);
+
         // Cleaning up
         manager.DestroyEntity(proto);
         Enabled = false;

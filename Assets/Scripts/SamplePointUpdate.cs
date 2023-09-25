@@ -7,17 +7,24 @@ public partial struct SamplePointUpdateSystem : ISystem
 {
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
-      => new SamplePointUpdateJob().ScheduleParallel();
+    {
+        if (!SystemAPI.HasSingleton<SamplePointOptions>()) return;
+        new SamplePointUpdateJob()
+          { Options = SystemAPI.GetSingleton<SamplePointOptions>() }
+          .ScheduleParallel();
+    }
 }
 
 [BurstCompile]
 partial struct SamplePointUpdateJob : IJobEntity
 {
+    public SamplePointOptions Options;
+
     void Execute(in SamplePoint point,
                  ref LocalToWorld l2w)
     {
-        var pos = math.float3(math.float2(point.Indices) * 0.1f, 0);
-        var mtx = float4x4.TRS(pos, quaternion.identity, 0.01f);
-        l2w.Value = mtx;
+        var p = math.float2(point.Indices) - (Options.RowCount - 1) * 0.5f;
+        var s = Options.PointRadius;
+        l2w.Value = float4x4.TRS(math.float3(p, 0), quaternion.identity, s);
     }
 }
