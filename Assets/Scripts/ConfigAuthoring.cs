@@ -1,32 +1,32 @@
 using UnityEngine;
 using Unity.Entities;
 
-public class GridConfig : IComponentData
+public class Config : IComponentData
 {
-    public uint GridCount;
+    public uint RowCount;
     public float PointRadius;
-    public Mesh GridMesh;
+    public Mesh LineMesh;
     public Mesh PointMesh;
     public Material Material;
 }
 
-public class GridConfigAuthoring : MonoBehaviour
+public class ConfigAuthoring : MonoBehaviour
 {
-    public uint GridCount = 4;
+    public uint RowCount = 4;
     public float PointRadius = 0.1f;
-    public Mesh GridMesh;
+    public Mesh LineMesh;
     public Mesh PointMesh;
     public Material Material;
 
-    class GridConfigBaker : Baker<GridConfigAuthoring>
+    class ConfigBaker : Baker<ConfigAuthoring>
     {
-        public override void Bake(GridConfigAuthoring src)
+        public override void Bake(ConfigAuthoring src)
         {
-            var data = new GridConfig()
+            var data = new Config()
             {
-                GridCount = src.GridCount,
+                RowCount = src.RowCount,
                 PointRadius = src.PointRadius,
-                GridMesh = src.GridMesh,
+                LineMesh = src.LineMesh,
                 PointMesh = src.PointMesh,
                 Material = src.Material
             };

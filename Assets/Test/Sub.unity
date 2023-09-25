@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb31e8f432419c42a879cca809ee062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridCount: 8
+  RowCount: 8
   PointRadius: 0.005
-  GridMesh: {fileID: -8670151273213183110, guid: 36c89e231eb237e41a0927a781130be8, type: 3}
+  LineMesh: {fileID: -8670151273213183110, guid: 36c89e231eb237e41a0927a781130be8, type: 3}
   PointMesh: {fileID: -8670151273213183110, guid: 160a5fea0b128ad46906ad9df124a9b5, type: 3}
   Material: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
 --- !u!1660057539 &9223372036854775807
