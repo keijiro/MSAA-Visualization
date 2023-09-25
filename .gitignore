@@ -3,6 +3,7 @@ Desktop.ini
 .DS_Store
 *.swp
 
+/Assets/SceneDependencyCache
 /Library
 /Logs
 /Recordings
