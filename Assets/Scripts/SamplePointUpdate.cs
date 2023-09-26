@@ -1,3 +1,4 @@
+/*
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -28,3 +29,4 @@ partial struct SamplePointUpdateJob : IJobEntity
         l2w.Value = float4x4.TRS(math.float3(p, 0), quaternion.identity, s);
     }
 }
+*/

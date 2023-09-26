@@ -1,3 +1,4 @@
+/*
 using Unity.Entities;
 using Unity.Entities.Graphics;
 using Unity.Mathematics;
@@ -48,3 +49,4 @@ public partial class SamplePointSpawnSystem : SystemBase
         Enabled = false;
     }
 }
+*/
