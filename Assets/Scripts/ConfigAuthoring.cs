@@ -31,6 +31,17 @@ public class ConfigAuthoring : MonoBehaviour
                 Material = src.Material
             };
             AddComponentObject(GetEntity(TransformUsageFlags.None), data);
+
+            var data2 = new Config()
+            {
+                RowCount = src.RowCount,
+                PointRadius = -src.PointRadius,
+                LineMesh = src.LineMesh,
+                PointMesh = src.PointMesh,
+                Material = src.Material
+            };
+            var add = CreateAdditionalEntity(TransformUsageFlags.None);
+            AddComponentObject(add, data2);
         }
     }
 }
