@@ -2,23 +2,25 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 
-public class SamplePointRenderer : IComponentData
+public class SamplePointRenderingConfig : IComponentData
 {
     public Mesh Mesh;
     public Material Material;
+    public float Radius;
 }
 
-public class SamplePointRendererAuthoring : MonoBehaviour
+public class SamplePointRenderingConfigAuthoring : MonoBehaviour
 {
     public Mesh Mesh;
     public Material Material;
+    public float Radius = 0.1f;
 
-    class Baker : Baker<SamplePointRendererAuthoring>
+    class Baker : Baker<SamplePointRenderingConfigAuthoring>
     {
-        public override void Bake(SamplePointRendererAuthoring src)
+        public override void Bake(SamplePointRenderingConfigAuthoring src)
         {
-            var data = new SamplePointRenderer()
-              { Mesh = src.Mesh, Material = src.Material };
+            var data = new SamplePointRenderingConfig()
+              { Mesh = src.Mesh, Material = src.Material, Radius = src.Radius};
 
             AddComponentObject(GetEntity(TransformUsageFlags.None), data);
 
@@ -31,6 +33,7 @@ public class SamplePointRendererAuthoring : MonoBehaviour
                     var add = CreateAdditionalEntity(TransformUsageFlags.None);
                     AddComponent(add, new PixelCoords() { Value = math.uint2(x, y) });
                     AddComponent(add, new SamplePoint() { Index = 0 });
+                    AddComponent(add, new Layer() { Index = 0 });
                 }
             }
         }

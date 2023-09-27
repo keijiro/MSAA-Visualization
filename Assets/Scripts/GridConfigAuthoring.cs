@@ -2,11 +2,6 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 
-public struct GridConfig : IComponentData
-{
-    public uint2 Dimensions;
-}
-
 public class GridConfigAuthoring : MonoBehaviour
 {
     public uint2 Dimensions = 4;
