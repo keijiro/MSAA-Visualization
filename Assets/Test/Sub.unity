@@ -186,7 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mesh: {fileID: -8670151273213183110, guid: 160a5fea0b128ad46906ad9df124a9b5, type: 3}
   Material: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
-  Radius: 0.05
+  Radius: 0.03
+  CurrentLayer: 2
 --- !u!114 &395066941
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,4 +39,5 @@ public class SamplePointRendering : IComponentData
     public Mesh Mesh;
     public Material Material;
     public float Radius;
+    public float CurrentLayer;
 }
