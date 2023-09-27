@@ -40,9 +40,4 @@ public static class SamplePointExtensions
       (this in SamplePoint pt, in Layer layer, in PixelCoords pc)
       => math.float2(pc.Value) + 0.5f
          + GetSamplePattern(layer.Index, pt.Index);
-
-    public static float2 GetScreenSpacePosition
-      (this in SamplePoint pt,
-       in Layer layer, in PixelCoords pc, in GridConfig grid)
-      => pt.GetPosition(layer, pc) - (float2)(grid.Dimensions + 0) * 0.5f;
 }

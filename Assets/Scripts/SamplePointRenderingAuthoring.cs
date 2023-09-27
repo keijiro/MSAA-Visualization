@@ -32,9 +32,10 @@ public class SamplePointRenderingAuthoring : MonoBehaviour
                         for (var i = 0u; i < math.pow(2, layer); i++)
                         {
                             var e = CreateAdditionalEntity(TransformUsageFlags.None);
+                            AddComponent(e, new Layer(){ Index = layer });
                             AddComponent(e, new PixelCoords(){ Value = math.uint2(x, y) });
                             AddComponent(e, new SamplePoint(){ Index = i });
-                            AddComponent(e, new Layer(){ Index = layer });
+                            AddComponent(e, new SampleResult());
                         }
                     }
                 }

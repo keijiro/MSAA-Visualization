@@ -35,6 +35,11 @@ public struct SamplePoint : IComponentData
     public uint Index;
 }
 
+public struct SampleResult : IComponentData
+{
+    public bool Hit;
+}
+
 public class GridLineRendering : IComponentData
 {
     public Mesh Mesh;

@@ -24,15 +24,18 @@ public partial class SamplePointRenderingSystem : SystemBase
 
         Entities.ForEach((in Layer layer,
                           in PixelCoords coords,
-                          in SamplePoint point) =>
+                          in SamplePoint point,
+                          in SampleResult result) =>
         {
             var alpha =
               math.saturate(1 - math.abs(layer.Index - render.CurrentLayer));
 
-            var pos = point.GetScreenSpacePosition(layer, coords, grid);
-            var mtx = MatrixUtil.TRS(pos, 0, render.Radius);
+            var p_gs = point.GetPosition(layer, coords);
+            var p_ss = GridUtil.ToScreenSpace(p_gs, grid);
 
-            _sheet.SetColor("_Color", Color.white * alpha);
+            var mtx = MatrixUtil.TRS(p_ss, 0, render.Radius);
+
+            _sheet.SetColor("_Color", (result.Hit ? Color.red : Color.blue) * alpha);
             Graphics.RenderMesh(rparams, render.Mesh, 0, mtx);
         })
         .WithoutBurst().Run();
