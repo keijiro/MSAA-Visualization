@@ -8,7 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: a8b5f06e412d587cbac1226722904238, type: 3}
-  _shape: 1
+  _shape: 9
   _plane:
     Size:
       x: 1
@@ -59,5 +59,19 @@ ScriptedImporter:
     DoubleSided: 0
   _teapot:
     Subdivision: 10
+  _triangle:
+    Vertex1:
+      x: 0
+      y: 0
+      z: 0
+    Vertex2:
+      x: 0
+      y: 1
+      z: 0
+    Vertex3:
+      x: 1
+      y: 0
+      z: 0
+    DoubleSided: 0
   _generateLightmapUVs: 0
   _readWriteMeshes: 0

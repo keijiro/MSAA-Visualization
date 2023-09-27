@@ -194,7 +194,7 @@
       "url": "https://registry.npmjs.com"
     },
     "jp.keijiro.metamesh": {
-      "version": "1.1.1",
+      "version": "1.2.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {

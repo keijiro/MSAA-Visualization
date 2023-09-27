@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mesh: {fileID: -8670151273213183110, guid: 63262a7e58bcd6c48a8744ed11ca5013, type: 3}
-  Material: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
+  Material: {fileID: -876546973899608171, guid: 7bc9af8aded7c0b4db99945bae1db184, type: 3}
 --- !u!114 &684860204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,14 +247,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vertex1:
-    x: 0
-    y: 0
+    x: -4.6
+    y: -3.8
   Vertex2:
-    x: 1
-    y: 0
+    x: 5.2
+    y: 0.8
   Vertex3:
-    x: 0
-    y: 1
+    x: -1.2
+    y: 2.3
 --- !u!4 &684860205
 Transform:
   m_ObjectHideFlags: 0

@@ -22,6 +22,10 @@ public partial class TriangleRenderingSystem : SystemBase
         var rparams = new RenderParams(render.Material);
         rparams.matProps = _sheet;
 
+        _sheet.SetVector("_Vertex1", math.float4(triangle.Vertex1, 0, 0));
+        _sheet.SetVector("_Vertex2", math.float4(triangle.Vertex2, 0, 0));
+        _sheet.SetVector("_Vertex3", math.float4(triangle.Vertex3, 0, 0));
+
         Graphics.RenderMesh(rparams, render.Mesh, 0, Matrix4x4.identity);
     }
 }
