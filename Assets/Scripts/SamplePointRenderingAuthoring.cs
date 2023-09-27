@@ -15,7 +15,7 @@ public class SamplePointRenderingAuthoring : MonoBehaviour
             var data = new SamplePointRendering()
               { Mesh = src.Mesh,
                 Material = src.Material,
-                Radius = src.Radius};
+                Radius = src.Radius };
 
             AddComponentObject(GetEntity(TransformUsageFlags.None), data);
 
