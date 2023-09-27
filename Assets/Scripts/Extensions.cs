@@ -44,6 +44,5 @@ public static class SamplePointExtensions
     public static float2 GetScreenSpacePosition
       (this in SamplePoint pt,
        in Layer layer, in PixelCoords pc, in GridConfig grid)
-      => pt.GetPosition(layer, pc) / grid.Dimensions
-         - (float2)(grid.Dimensions - 1) * 0.5f;
+      => pt.GetPosition(layer, pc) - (float2)(grid.Dimensions + 0) * 0.5f;
 }

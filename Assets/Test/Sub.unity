@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dimensions:
     x: 8
-    y: 4
+    y: 8
 --- !u!4 &395066939
 Transform:
   m_ObjectHideFlags: 0

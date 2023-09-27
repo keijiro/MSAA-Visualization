@@ -1,5 +1,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine;
 
 public struct GridConfig : IComponentData
 {
@@ -19,4 +20,11 @@ public struct PixelCoords : IComponentData
 public struct SamplePoint : IComponentData
 {
     public uint Index;
+}
+
+public class SamplePointRendering : IComponentData
+{
+    public Mesh Mesh;
+    public Material Material;
+    public float Radius;
 }

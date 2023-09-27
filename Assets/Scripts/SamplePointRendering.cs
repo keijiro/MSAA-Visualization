@@ -1,7 +1,5 @@
 using Unity.Entities;
-using Unity.Entities.Graphics;
 using Unity.Mathematics;
-using Unity.Rendering;
 using UnityEngine;
 
 [WorldSystemFilter
@@ -9,27 +7,21 @@ using UnityEngine;
 public partial class SamplePointRenderingSystem : SystemBase
 {
     protected override void OnCreate()
-      => RequireForUpdate<SamplePointRenderingConfig>();
+      => RequireForUpdate<SamplePointRendering>();
 
     protected override void OnUpdate()
     {
-        var config = SystemAPI.ManagedAPI.
-          GetSingleton<SamplePointRenderingConfig>();
-
+        var render = SystemAPI.ManagedAPI.GetSingleton<SamplePointRendering>();
         var grid = SystemAPI.GetSingleton<GridConfig>();
+        var rparams = new RenderParams(render.Material);
 
         Entities.ForEach((in Layer layer,
                           in PixelCoords coords,
                           in SamplePoint point) =>
         {
-            var rparams = new RenderParams(config.Material);
-
-            var sp = point.GetScreenSpacePosition(layer, coords, grid);
-            var pos = math.float3(sp, 0);
-
-            var matrix = float4x4.TRS(pos, quaternion.identity, config.Radius);
-
-            Graphics.RenderMesh(rparams, config.Mesh, 0, matrix);
+            var pos = point.GetScreenSpacePosition(layer, coords, grid);
+            var matrix = MatrixUtil.TRS(pos, 0, render.Radius);
+            Graphics.RenderMesh(rparams, render.Mesh, 0, matrix);
         })
         .WithoutBurst().Run();
     }
