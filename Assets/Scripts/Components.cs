@@ -23,6 +23,13 @@ public struct GridLine : IComponentData
     public uint Index;
 }
 
+public struct Triangle : IComponentData
+{
+    public float2 Vertex1;
+    public float2 Vertex2;
+    public float2 Vertex3;
+}
+
 public struct SamplePoint : IComponentData
 {
     public uint Index;
@@ -40,4 +47,10 @@ public class SamplePointRendering : IComponentData
     public Material Material;
     public float Radius;
     public float CurrentLayer;
+}
+
+public class TriangleRendering : IComponentData
+{
+    public Mesh Mesh;
+    public Material Material;
 }
