@@ -6,6 +6,7 @@ public class ColorSchemeAuthoring : MonoBehaviour
     public Color HitColor = Color.red;
     public Color MissColor = Color.blue;
     public Color LineColor = Color.gray;
+    public Color TriangleColor = Color.gray;
 
     class Baker : Baker<ColorSchemeAuthoring>
     {
@@ -14,6 +15,7 @@ public class ColorSchemeAuthoring : MonoBehaviour
                           new ColorScheme()
                             { HitColor = src.HitColor,
                               MissColor = src.MissColor,
-                              LineColor = src.LineColor });
+                              LineColor = src.LineColor,
+                              TriangleColor = src.TriangleColor });
     }
 }

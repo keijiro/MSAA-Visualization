@@ -300,9 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e233da2bc89468b4a8f78b9b594ea54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.19215687}
+  HitColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 1}
   MissColor: {r: 0.14509805, g: 0.13725491, b: 0.14509805, a: 1}
   LineColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
+  TriangleColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.36078432}
 --- !u!4 &1433103930
 Transform:
   m_ObjectHideFlags: 0

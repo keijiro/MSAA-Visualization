@@ -26,7 +26,7 @@ public partial class TriangleRenderingSystem : SystemBase
         var v3 = GridUtil.ToScreenSpace(triangle.Vertex3, grid);
 
         var props = MaterialUtil.SharedPropertyBlock;
-        props.SetColor("_Color", colors.HitColor);
+        props.SetColor("_Color", colors.TriangleColor);
         props.SetVector("_Vertex1", math.float4(v1, 0, 0));
         props.SetVector("_Vertex2", math.float4(v2, 0, 0));
         props.SetVector("_Vertex3", math.float4(v3, 0, 0));
