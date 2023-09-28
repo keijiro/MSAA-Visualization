@@ -2,11 +2,12 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 
-public class SamplePointRenderingAuthoring : MonoBehaviour
+[RequireComponent(typeof(GridConfigAuthoring))]
+public class SamplePointAuthoring : MonoBehaviour
 {
-    class Baker : Baker<SamplePointRenderingAuthoring>
+    class Baker : Baker<SamplePointAuthoring>
     {
-        public override void Bake(SamplePointRenderingAuthoring src)
+        public override void Bake(SamplePointAuthoring src)
         {
             var grid = GetComponent<GridConfigAuthoring>();
             for (var layer = 0u; layer < 4; layer++)

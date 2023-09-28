@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a8a87e77dfae3419eb93f6677221c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 0.08
+  Radius: 0.06
   CurrentLayer: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -2,11 +2,12 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 
-public class GridLineRenderingAuthoring : MonoBehaviour
+[RequireComponent(typeof(GridConfigAuthoring))]
+public class GridLineAuthoring : MonoBehaviour
 {
-    class Baker : Baker<GridLineRenderingAuthoring>
+    class Baker : Baker<GridLineAuthoring>
     {
-        public override void Bake(GridLineRenderingAuthoring src)
+        public override void Bake(GridLineAuthoring src)
         {
             var grid = GetComponent<GridConfigAuthoring>();
 
