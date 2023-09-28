@@ -58,4 +58,5 @@ public class TriangleRendering : IComponentData
 {
     public Mesh Mesh;
     public Material Material;
+    public Color Color;
 }

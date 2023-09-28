@@ -28,7 +28,7 @@ public partial class TriangleRenderingSystem : SystemBase
         var v2 = GridUtil.ToScreenSpace(triangle.Vertex2, grid);
         var v3 = GridUtil.ToScreenSpace(triangle.Vertex3, grid);
 
-        _sheet.SetColor("_Color", new Color(1, 1, 1, 0.3f));
+        _sheet.SetColor("_Color", render.Color);
         _sheet.SetVector("_Vertex1", math.float4(v1, 0, 0));
         _sheet.SetVector("_Vertex2", math.float4(v2, 0, 0));
         _sheet.SetVector("_Vertex3", math.float4(v3, 0, 0));

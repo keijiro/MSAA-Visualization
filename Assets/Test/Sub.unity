@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mesh: {fileID: -8670151273213183110, guid: 63262a7e58bcd6c48a8744ed11ca5013, type: 3}
   Material: {fileID: -876546973899608171, guid: 7bc9af8aded7c0b4db99945bae1db184, type: 3}
+  Color: {r: 0.53999996, g: 1, b: 0.6987, a: 0.21960784}
 --- !u!114 &684860204
 MonoBehaviour:
   m_ObjectHideFlags: 0
