@@ -40,6 +40,13 @@ public struct SampleResult : IComponentData
     public bool Hit;
 }
 
+public struct ColorScheme : IComponentData
+{
+    public Color HitColor;
+    public Color MissColor;
+    public Color LineColor;
+}
+
 public class GridLineRendering : IComponentData
 {
     public Mesh Mesh;

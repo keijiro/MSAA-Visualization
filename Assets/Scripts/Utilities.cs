@@ -1,4 +1,11 @@
+using UnityEngine;
 using Unity.Mathematics;
+
+public static class MaterialUtil
+{
+    public static MaterialPropertyBlock SharedPropertyBlock
+      = new MaterialPropertyBlock();
+}
 
 public static class MatrixUtil
 {

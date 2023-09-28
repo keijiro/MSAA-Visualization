@@ -5,7 +5,6 @@
     "com.unity.render-pipelines.universal": "14.0.8",
     "jp.keijiro.klak.motion": "1.1.0",
     "jp.keijiro.metamesh": "1.2.0",
-    "jp.keijiro.metawire": "2.0.0",
     "com.unity.modules.uielements": "1.0.0"
   },
   "scopedRegistries": [
