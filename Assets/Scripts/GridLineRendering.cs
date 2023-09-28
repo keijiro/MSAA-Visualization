@@ -8,21 +8,21 @@ public partial class GridLineRenderingSystem : SystemBase
 {
     protected override void OnCreate()
     {
-        RequireForUpdate<GridLineRendering>();
         RequireForUpdate<GridConfig>();
+        RequireForUpdate<RenderingAssets>();
         RequireForUpdate<ColorScheme>();
     }
 
     protected override void OnUpdate()
     {
-        var render = SystemAPI.ManagedAPI.GetSingleton<GridLineRendering>();
+        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
         var grid = SystemAPI.GetSingleton<GridConfig>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
 
         var props = MaterialUtil.SharedPropertyBlock;
         props.SetColor("_Color", colors.LineColor);
 
-        var rparams = new RenderParams(render.Material) { matProps = props };
+        var rparams = new RenderParams(assets.LineMaterial) { matProps = props };
 
         Entities.ForEach((in GridLine line) =>
         {
@@ -32,7 +32,7 @@ public partial class GridLineRenderingSystem : SystemBase
             var r = line.IsVertical ? math.PI / 2 : 0;
             var s = line.IsVertical ? grid.Dimensions.x : grid.Dimensions.y;
 
-            Graphics.RenderMesh(rparams, render.Mesh, 0, MatrixUtil.TRS(t, r, s));
+            Graphics.RenderMesh(rparams, assets.LineMesh, 0, MatrixUtil.TRS(t, r, s));
         })
         .WithoutBurst().Run();
     }

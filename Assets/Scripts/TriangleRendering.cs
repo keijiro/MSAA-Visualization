@@ -8,15 +8,15 @@ public partial class TriangleRenderingSystem : SystemBase
 {
     protected override void OnCreate()
     {
-        RequireForUpdate<TriangleRendering>();
         RequireForUpdate<Triangle>();
         RequireForUpdate<GridConfig>();
+        RequireForUpdate<RenderingAssets>();
         RequireForUpdate<ColorScheme>();
     }
 
     protected override void OnUpdate()
     {
-        var render = SystemAPI.ManagedAPI.GetSingleton<TriangleRendering>();
+        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
         var triangle = SystemAPI.GetSingleton<Triangle>();
         var grid = SystemAPI.GetSingleton<GridConfig>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
@@ -31,7 +31,7 @@ public partial class TriangleRenderingSystem : SystemBase
         props.SetVector("_Vertex2", math.float4(v2, 0, 0));
         props.SetVector("_Vertex3", math.float4(v3, 0, 0));
 
-        var rparams = new RenderParams(render.Material) { matProps = props };
-        Graphics.RenderMesh(rparams, render.Mesh, 0, Matrix4x4.identity);
+        var rparams = new RenderParams(assets.TriangleMaterial) { matProps = props };
+        Graphics.RenderMesh(rparams, assets.TriangleMesh, 0, Matrix4x4.identity);
     }
 }

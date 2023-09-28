@@ -184,10 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a2813a60f60f949bea2ef114ec8041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mesh: {fileID: -8670151273213183110, guid: 160a5fea0b128ad46906ad9df124a9b5, type: 3}
-  Material: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
-  Radius: 0.09
-  CurrentLayer: 2
 --- !u!114 &395066941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,8 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0057ebfe1e75e409789b518222fff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mesh: {fileID: -8670151273213183110, guid: 13435b9dd3edd1340bd3e65823dda1f3, type: 3}
-  Material: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
 --- !u!1 &684860202
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +206,6 @@ GameObject:
   m_Component:
   - component: {fileID: 684860205}
   - component: {fileID: 684860204}
-  - component: {fileID: 684860203}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -220,21 +213,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &684860203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684860202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62b355301ae0b5d4c80d52764c0d7591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mesh: {fileID: -8670151273213183110, guid: 63262a7e58bcd6c48a8744ed11ca5013, type: 3}
-  Material: {fileID: -876546973899608171, guid: 7bc9af8aded7c0b4db99945bae1db184, type: 3}
-  Color: {r: 0.53999996, g: 1, b: 0.6987, a: 0.21960784}
 --- !u!114 &684860204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,10 +226,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vertex1:
-    x: -0.6
+    x: 0.25
     y: 0.2
   Vertex2:
-    x: 9.2
+    x: 7.8
     y: 4.8
   Vertex3:
     x: 2.8
@@ -280,9 +258,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1433103930}
+  - component: {fileID: 1433103931}
   - component: {fileID: 1433103929}
+  - component: {fileID: 1433103932}
   m_Layer: 0
-  m_Name: Color Scheme
+  m_Name: Rendering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,6 +299,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1433103931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433103928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02328771a3a8b5148bdfee0c79eb6e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointMesh: {fileID: -8670151273213183110, guid: 160a5fea0b128ad46906ad9df124a9b5, type: 3}
+  LineMesh: {fileID: -8670151273213183110, guid: 13435b9dd3edd1340bd3e65823dda1f3, type: 3}
+  TriangleMesh: {fileID: -8670151273213183110, guid: 63262a7e58bcd6c48a8744ed11ca5013, type: 3}
+  PointMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
+  LineMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
+  TriangleMaterial: {fileID: -876546973899608171, guid: 7bc9af8aded7c0b4db99945bae1db184, type: 3}
+--- !u!114 &1433103932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433103928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a8a87e77dfae3419eb93f6677221c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 0.08
+  CurrentLayer: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

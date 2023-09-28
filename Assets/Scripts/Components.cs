@@ -35,6 +35,12 @@ public struct SamplePoint : IComponentData
     public uint Index;
 }
 
+public struct SamplePointAppearance : IComponentData
+{
+    public float Radius;
+    public float CurrentLayer;
+}
+
 public struct SampleResult : IComponentData
 {
     public bool Hit;
@@ -48,23 +54,12 @@ public struct ColorScheme : IComponentData
     public Color TriangleColor;
 }
 
-public class GridLineRendering : IComponentData
+public class RenderingAssets : IComponentData
 {
-    public Mesh Mesh;
-    public Material Material;
-}
-
-public class SamplePointRendering : IComponentData
-{
-    public Mesh Mesh;
-    public Material Material;
-    public float Radius;
-    public float CurrentLayer;
-}
-
-public class TriangleRendering : IComponentData
-{
-    public Mesh Mesh;
-    public Material Material;
-    public Color Color;
+    public Mesh PointMesh;
+    public Mesh LineMesh;
+    public Mesh TriangleMesh;
+    public Material PointMaterial;
+    public Material LineMaterial;
+    public Material TriangleMaterial;
 }

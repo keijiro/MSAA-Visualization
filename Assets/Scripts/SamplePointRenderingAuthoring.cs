@@ -4,23 +4,10 @@ using Unity.Mathematics;
 
 public class SamplePointRenderingAuthoring : MonoBehaviour
 {
-    public Mesh Mesh;
-    public Material Material;
-    public float Radius = 0.1f;
-    public float CurrentLayer = 0;
-
     class Baker : Baker<SamplePointRenderingAuthoring>
     {
         public override void Bake(SamplePointRenderingAuthoring src)
         {
-            AddComponentObject
-              (GetEntity(TransformUsageFlags.None),
-               new SamplePointRendering()
-                 { Mesh = src.Mesh,
-                   Material = src.Material,
-                   Radius = src.Radius,
-                   CurrentLayer = src.CurrentLayer });
-
             var grid = GetComponent<GridConfigAuthoring>();
             for (var layer = 0u; layer < 4; layer++)
                 for (var x = 0u; x < grid.Dimensions.x; x++)
