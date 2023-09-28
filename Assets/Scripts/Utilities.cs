@@ -21,8 +21,13 @@ public static class TriangleUtil
 
     public static bool TestPoint(float2 pt, float2 v1, float2 v2, float2 v3)
     {
-        var a =  (Cross(pt, v3) - Cross(v1, v3)) / Cross(v2, v3);
-        var b = -(Cross(pt, v2) - Cross(v1, v2)) / Cross(v2, v3);
+        // Triangle interior test from:
+        // https://mathworld.wolfram.com/TriangleInterior.html
+        v2 -= v1;
+        v3 -= v1;
+        var div = math.rcp(Cross(v2, v3));
+        var a =  (Cross(pt, v3) - Cross(v1, v3)) * div;
+        var b = -(Cross(pt, v2) - Cross(v1, v2)) * div;
         return a > 0 && b > 0 && (a + b) < 1;
     }
 

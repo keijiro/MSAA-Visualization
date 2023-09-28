@@ -2,6 +2,9 @@ using Unity.Mathematics;
 
 public static class SamplePointExtensions
 {
+    // MSAA sampling pattern from:
+    // https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_standard_multisample_quality_levels
+
     static readonly float2[] Pattern2 = new []
     {
         math.float2( 4,  4) / 16,
