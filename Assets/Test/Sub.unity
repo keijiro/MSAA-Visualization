@@ -239,14 +239,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vertex1:
-    x: 0.25
-    y: 0.2
+    x: 0.09
+    y: 0.11
   Vertex2:
-    x: 7.8
-    y: 4.8
+    x: 7.79
+    y: 2.53
   Vertex3:
-    x: 2.8
-    y: 6.3
+    x: 6.79
+    y: 7.72
 --- !u!4 &684860205
 Transform:
   m_ObjectHideFlags: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
   HitColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 1}
   MissColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
   LineColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
-  PixelColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.11764706}
+  PixelColor: {r: 0.9098039, g: 0.9098039, b: 0.9098039, a: 1}
   TriangleColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.36078432}
 --- !u!4 &1433103930
 Transform:

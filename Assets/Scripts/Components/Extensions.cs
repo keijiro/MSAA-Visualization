@@ -43,4 +43,7 @@ public static class SamplePointExtensions
       (this in SamplePoint pt, in Layer layer, in PixelCoords pc)
       => math.float2(pc.Value) + 0.5f
          + GetSamplePattern(layer.Index, pt.Index);
+
+    public static int GetElementCount(this in GridSpace space)
+      => (int)(space.Dimensions.x * space.Dimensions.y);
 }

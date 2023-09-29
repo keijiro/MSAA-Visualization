@@ -9,6 +9,7 @@ public partial class PixelRenderingSystem : SystemBase
     protected override void OnCreate()
     {
         RequireForUpdate<GridSpace>();
+        RequireForUpdate<SamplePointAppearance>();
         RequireForUpdate<RenderingAssets>();
         RequireForUpdate<ColorScheme>();
     }
@@ -16,6 +17,7 @@ public partial class PixelRenderingSystem : SystemBase
     protected override void OnUpdate()
     {
         var space = SystemAPI.GetSingleton<GridSpace>();
+        var appear = SystemAPI.GetSingleton<SamplePointAppearance>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
 
@@ -25,9 +27,11 @@ public partial class PixelRenderingSystem : SystemBase
 
         Entities.ForEach((in Layer layer,
                           in PixelCoords coords,
-                          in Pixel point) =>
+                          in Pixel pixel) =>
         {
-            var color = colors.PixelColor;
+            var color = colors.PixelColor * pixel.Coverage;
+            color.a *=
+              math.saturate(1 - math.abs(layer.Index - appear.CurrentLayer));
 
             var p_gs = math.float2(coords.Value) + 0.5f;
             var p_ss = CoordUtil.GridToScreen(space, p_gs);

@@ -24,6 +24,11 @@ public static class CoordUtil
 {
     public static float2 GridToScreen(in GridSpace grid, float2 pos)
       => pos - (float2)grid.Dimensions / 2;
+
+    public static int PixelToIndex
+      (in GridSpace grid, in Layer layer, in PixelCoords coords)
+      => (int)(layer.Index * grid.Dimensions.x * grid.Dimensions.y
+         + coords.Value.y * grid.Dimensions.x + coords.Value.x);
 }
 
 public static class TriangleUtil

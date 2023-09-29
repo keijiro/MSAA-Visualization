@@ -4,7 +4,7 @@ using Unity.Entities;
 public class SamplePointAppearanceAuthoring : MonoBehaviour
 {
     public float Radius = 0.1f;
-    public float CurrentLayer = 0;
+    [Range(0, 3)] public float CurrentLayer = 0;
 
     class Baker : Baker<SamplePointAppearanceAuthoring>
     {
