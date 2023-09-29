@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 1433103931}
   - component: {fileID: 1433103929}
   - component: {fileID: 1433103932}
+  - component: {fileID: 1433103933}
   m_Layer: 0
   m_Name: Rendering
   m_TagString: Untagged
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 1}
-  MissColor: {r: 0.14509805, g: 0.13725491, b: 0.14509805, a: 1}
+  MissColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
   LineColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
   TriangleColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.36078432}
 --- !u!4 &1433103930
@@ -331,6 +332,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Radius: 0.06
   CurrentLayer: 3
+--- !u!114 &1433103933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433103928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d1eb9867a557445807e7b72c16009a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boldness: 0.04
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

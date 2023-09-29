@@ -12,7 +12,7 @@ ScriptedImporter:
   _plane:
     Size:
       x: 0.5
-      y: 0.004
+      y: 0.5
     Subdivisions:
       x: 2
       y: 2

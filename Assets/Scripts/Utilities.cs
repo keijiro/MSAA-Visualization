@@ -13,6 +13,11 @@ public static class MatrixUtil
       => float4x4.TRS(math.float3(position, 0),
                       quaternion.RotateZ(angle),
                       scale);
+
+    public static float4x4 TRS(float2 position, float angle, float2 scale)
+      => float4x4.TRS(math.float3(position, 0),
+                      quaternion.RotateZ(angle),
+                      math.float3(scale, 1));
 }
 
 public static class GridUtil

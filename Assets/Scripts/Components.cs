@@ -17,17 +17,22 @@ public struct PixelCoords : IComponentData
     public uint2 Value;
 }
 
+public struct Triangle : IComponentData
+{
+    public float2 Vertex1;
+    public float2 Vertex2;
+    public float2 Vertex3;
+}
+
 public struct GridLine : IComponentData
 {
     public bool IsVertical;
     public uint Index;
 }
 
-public struct Triangle : IComponentData
+public struct GridLineAppearance : IComponentData
 {
-    public float2 Vertex1;
-    public float2 Vertex2;
-    public float2 Vertex3;
+    public float Boldness;
 }
 
 public struct SamplePoint : IComponentData

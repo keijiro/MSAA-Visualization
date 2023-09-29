@@ -11,6 +11,7 @@ public partial class GridLineRenderingSystem : SystemBase
         RequireForUpdate<GridConfig>();
         RequireForUpdate<RenderingAssets>();
         RequireForUpdate<ColorScheme>();
+        RequireForUpdate<GridLineAppearance>();
     }
 
     protected override void OnUpdate()
@@ -18,6 +19,7 @@ public partial class GridLineRenderingSystem : SystemBase
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
         var grid = SystemAPI.GetSingleton<GridConfig>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
+        var appear = SystemAPI.GetSingleton<GridLineAppearance>();
 
         var props = MaterialUtil.SharedPropertyBlock;
         props.SetColor("_Color", colors.LineColor);
@@ -31,8 +33,9 @@ public partial class GridLineRenderingSystem : SystemBase
 
             var r = line.IsVertical ? math.PI / 2 : 0;
             var s = line.IsVertical ? grid.Dimensions.x : grid.Dimensions.y;
+            var m = MatrixUtil.TRS(t, r, math.float2(s, appear.Boldness));
 
-            Graphics.RenderMesh(rparams, assets.LineMesh, 0, MatrixUtil.TRS(t, r, s));
+            Graphics.RenderMesh(rparams, assets.LineMesh, 0, m);
         })
         .WithoutBurst().Run();
     }
