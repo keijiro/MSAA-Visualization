@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 395066938}
   - component: {fileID: 395066940}
   - component: {fileID: 395066941}
+  - component: {fileID: 395066942}
   m_Layer: 0
   m_Name: Grid Space
   m_TagString: Untagged
@@ -194,6 +195,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed0057ebfe1e75e409789b518222fff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &395066942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395066936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6e3e5705c4c094cbe88857244f129b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &684860202
@@ -284,6 +297,7 @@ MonoBehaviour:
   HitColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 1}
   MissColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
   LineColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
+  PixelColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.11764706}
   TriangleColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.36078432}
 --- !u!4 &1433103930
 Transform:
@@ -314,9 +328,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointMesh: {fileID: -8670151273213183110, guid: 160a5fea0b128ad46906ad9df124a9b5, type: 3}
   LineMesh: {fileID: -8670151273213183110, guid: 13435b9dd3edd1340bd3e65823dda1f3, type: 3}
+  PixelMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
   TriangleMesh: {fileID: -8670151273213183110, guid: 63262a7e58bcd6c48a8744ed11ca5013, type: 3}
   PointMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
   LineMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
+  PixelMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
   TriangleMaterial: {fileID: -876546973899608171, guid: 7bc9af8aded7c0b4db99945bae1db184, type: 3}
 --- !u!114 &1433103932
 MonoBehaviour:

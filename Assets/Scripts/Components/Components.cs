@@ -39,6 +39,11 @@ public struct SampleResult : IComponentData
     public bool Hit;
 }
 
+public struct Pixel : IComponentData
+{
+    public float Coverage;
+}
+
 public struct Triangle : IComponentData
 {
     public float2 Vertex1;
@@ -66,6 +71,7 @@ public struct ColorScheme : IComponentData
     public Color HitColor;
     public Color MissColor;
     public Color LineColor;
+    public Color PixelColor;
     public Color TriangleColor;
 }
 
@@ -73,9 +79,11 @@ public class RenderingAssets : IComponentData
 {
     public Mesh PointMesh;
     public Mesh LineMesh;
+    public Mesh PixelMesh;
     public Mesh TriangleMesh;
     public Material PointMaterial;
     public Material LineMaterial;
+    public Material PixelMaterial;
     public Material TriangleMaterial;
 }
 
