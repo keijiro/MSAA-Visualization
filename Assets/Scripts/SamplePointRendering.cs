@@ -8,16 +8,16 @@ public partial class SamplePointRenderingSystem : SystemBase
 {
     protected override void OnCreate()
     {
+        RequireForUpdate<GridSpace>();
         RequireForUpdate<SamplePointAppearance>();
-        RequireForUpdate<GridConfig>();
         RequireForUpdate<RenderingAssets>();
         RequireForUpdate<ColorScheme>();
     }
 
     protected override void OnUpdate()
     {
+        var space = SystemAPI.GetSingleton<GridSpace>();
         var appear = SystemAPI.GetSingleton<SamplePointAppearance>();
-        var grid = SystemAPI.GetSingleton<GridConfig>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
 
@@ -34,7 +34,7 @@ public partial class SamplePointRenderingSystem : SystemBase
               math.saturate(1 - math.abs(layer.Index - appear.CurrentLayer));
 
             var p_gs = point.GetPosition(layer, coords);
-            var p_ss = GridUtil.ToScreenSpace(p_gs, grid);
+            var p_ss = CoordUtil.GridToScreen(space, p_gs);
 
             var mtx = MatrixUtil.TRS(p_ss, 0, appear.Radius);
 

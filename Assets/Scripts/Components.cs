@@ -2,10 +2,16 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-public struct GridConfig : IComponentData
+#region Global configuration
+
+public struct GridSpace : IComponentData
 {
     public uint2 Dimensions;
 }
+
+#endregion
+
+#region Screen elements
 
 public struct Layer : IComponentData
 {
@@ -17,22 +23,10 @@ public struct PixelCoords : IComponentData
     public uint2 Value;
 }
 
-public struct Triangle : IComponentData
-{
-    public float2 Vertex1;
-    public float2 Vertex2;
-    public float2 Vertex3;
-}
-
 public struct GridLine : IComponentData
 {
     public bool IsVertical;
     public uint Index;
-}
-
-public struct GridLineAppearance : IComponentData
-{
-    public float Boldness;
 }
 
 public struct SamplePoint : IComponentData
@@ -40,15 +34,31 @@ public struct SamplePoint : IComponentData
     public uint Index;
 }
 
+public struct SampleResult : IComponentData
+{
+    public bool Hit;
+}
+
+public struct Triangle : IComponentData
+{
+    public float2 Vertex1;
+    public float2 Vertex2;
+    public float2 Vertex3;
+}
+
+#endregion
+
+#region Rendering
+
+public struct GridLineAppearance : IComponentData
+{
+    public float Boldness;
+}
+
 public struct SamplePointAppearance : IComponentData
 {
     public float Radius;
     public float CurrentLayer;
-}
-
-public struct SampleResult : IComponentData
-{
-    public bool Hit;
 }
 
 public struct ColorScheme : IComponentData
@@ -68,3 +78,5 @@ public class RenderingAssets : IComponentData
     public Material LineMaterial;
     public Material TriangleMaterial;
 }
+
+#endregion

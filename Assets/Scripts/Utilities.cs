@@ -20,10 +20,10 @@ public static class MatrixUtil
                       math.float3(scale, 1));
 }
 
-public static class GridUtil
+public static class CoordUtil
 {
-    public static float2 ToScreenSpace(float2 pos, in GridConfig config)
-      => pos - (float2)config.Dimensions / 2;
+    public static float2 GridToScreen(in GridSpace grid, float2 pos)
+      => pos - (float2)grid.Dimensions / 2;
 }
 
 public static class TriangleUtil

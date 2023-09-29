@@ -8,22 +8,22 @@ public partial class TriangleRenderingSystem : SystemBase
 {
     protected override void OnCreate()
     {
+        RequireForUpdate<GridSpace>();
         RequireForUpdate<Triangle>();
-        RequireForUpdate<GridConfig>();
         RequireForUpdate<RenderingAssets>();
         RequireForUpdate<ColorScheme>();
     }
 
     protected override void OnUpdate()
     {
-        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
+        var space = SystemAPI.GetSingleton<GridSpace>();
         var triangle = SystemAPI.GetSingleton<Triangle>();
-        var grid = SystemAPI.GetSingleton<GridConfig>();
+        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
 
-        var v1 = GridUtil.ToScreenSpace(triangle.Vertex1, grid);
-        var v2 = GridUtil.ToScreenSpace(triangle.Vertex2, grid);
-        var v3 = GridUtil.ToScreenSpace(triangle.Vertex3, grid);
+        var v1 = CoordUtil.GridToScreen(space, triangle.Vertex1);
+        var v2 = CoordUtil.GridToScreen(space, triangle.Vertex2);
+        var v3 = CoordUtil.GridToScreen(space, triangle.Vertex3);
 
         var props = MaterialUtil.SharedPropertyBlock;
         props.SetColor("_Color", colors.TriangleColor);

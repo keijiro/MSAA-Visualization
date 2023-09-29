@@ -2,17 +2,17 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 
-[RequireComponent(typeof(GridConfigAuthoring))]
+[RequireComponent(typeof(GridSpaceAuthoring))]
 public class SamplePointAuthoring : MonoBehaviour
 {
     class Baker : Baker<SamplePointAuthoring>
     {
         public override void Bake(SamplePointAuthoring src)
         {
-            var grid = GetComponent<GridConfigAuthoring>();
+            var space = GetComponent<GridSpaceAuthoring>();
             for (var layer = 0u; layer < 4; layer++)
-                for (var x = 0u; x < grid.Dimensions.x; x++)
-                    for (var y = 0u; y < grid.Dimensions.y; y++)
+                for (var x = 0u; x < space.Dimensions.x; x++)
+                    for (var y = 0u; y < space.Dimensions.y; y++)
                         for (var i = 0u; i < math.pow(2, layer); i++)
                             AddSamplePoint(layer, x, y, i);
         }
