@@ -239,14 +239,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vertex1:
-    x: 0.09
-    y: 0.11
+    x: 1
+    y: 1.4
   Vertex2:
-    x: 7.79
-    y: 2.53
+    x: 7.71
+    y: 3.13
   Vertex3:
-    x: 6.79
-    y: 7.72
+    x: 5.71
+    y: 6.18
 --- !u!4 &684860205
 Transform:
   m_ObjectHideFlags: 0
@@ -294,11 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e233da2bc89468b4a8f78b9b594ea54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 1}
-  MissColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
-  LineColor: {r: 0.39607847, g: 0.3921569, b: 0.40000004, a: 1}
-  PixelColor: {r: 0.9098039, g: 0.9098039, b: 0.9098039, a: 1}
-  TriangleColor: {r: 0.12941177, g: 0.56078434, b: 0.909804, a: 0.36078432}
+  HitColor: {r: 0.313348, g: 0.53923607, b: 0.72199994, a: 1}
+  MissColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
+  LineColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+  PixelColor: {r: 0.30588236, g: 0.58431375, b: 0.8117648, a: 1}
+  TriangleColor: {r: 0.30522352, g: 0.5861625, b: 0.8117647, a: 0.5294118}
 --- !u!4 &1433103930
 Transform:
   m_ObjectHideFlags: 0
@@ -326,11 +326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02328771a3a8b5148bdfee0c79eb6e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointMesh: {fileID: -8670151273213183110, guid: 160a5fea0b128ad46906ad9df124a9b5, type: 3}
-  LineMesh: {fileID: -8670151273213183110, guid: 13435b9dd3edd1340bd3e65823dda1f3, type: 3}
+  PointMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
+  LineMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
   PixelMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
   TriangleMesh: {fileID: -8670151273213183110, guid: 63262a7e58bcd6c48a8744ed11ca5013, type: 3}
-  PointMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
+  PointMaterial: {fileID: 2100000, guid: 412182e03503b334f97491ea5de388b4, type: 2}
   LineMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
   PixelMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
   TriangleMaterial: {fileID: -876546973899608171, guid: 7bc9af8aded7c0b4db99945bae1db184, type: 3}
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a8a87e77dfae3419eb93f6677221c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 0.06
+  Radius: 0.12
   CurrentLayer: 3
 --- !u!114 &1433103933
 MonoBehaviour:
@@ -360,7 +360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d1eb9867a557445807e7b72c16009a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boldness: 0.04
+  Boldness: 0.08
+  Depth: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

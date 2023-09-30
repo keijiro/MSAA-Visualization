@@ -58,6 +58,7 @@ public struct Triangle : IComponentData
 public struct GridLineAppearance : IComponentData
 {
     public float Boldness;
+    public float Depth;
 }
 
 public struct SamplePointAppearance : IComponentData

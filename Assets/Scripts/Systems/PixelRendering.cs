@@ -9,6 +9,7 @@ public partial class PixelRenderingSystem : SystemBase
     protected override void OnCreate()
     {
         RequireForUpdate<GridSpace>();
+        RequireForUpdate<GridLineAppearance>();
         RequireForUpdate<SamplePointAppearance>();
         RequireForUpdate<RenderingAssets>();
         RequireForUpdate<ColorScheme>();
@@ -17,7 +18,8 @@ public partial class PixelRenderingSystem : SystemBase
     protected override void OnUpdate()
     {
         var space = SystemAPI.GetSingleton<GridSpace>();
-        var appear = SystemAPI.GetSingleton<SamplePointAppearance>();
+        var grid = SystemAPI.GetSingleton<GridLineAppearance>();
+        var point = SystemAPI.GetSingleton<SamplePointAppearance>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
 
@@ -31,12 +33,12 @@ public partial class PixelRenderingSystem : SystemBase
         {
             var color = colors.PixelColor * pixel.Coverage;
             color.a *=
-              math.saturate(1 - math.abs(layer.Index - appear.CurrentLayer));
+              math.saturate(1 - math.abs(layer.Index - point.CurrentLayer));
 
             var p_gs = math.float2(coords.Value) + 0.5f;
             var p_ss = CoordUtil.GridToScreen(space, p_gs);
 
-            var mtx = MatrixUtil.TRS(p_ss, 0, 1);
+            var mtx = MatrixUtil.TRS2D(p_ss, grid.Depth, 0, 1);
 
             props.SetColor("_Color", color);
             Graphics.RenderMesh(rparams, assets.PixelMesh, 0, mtx);

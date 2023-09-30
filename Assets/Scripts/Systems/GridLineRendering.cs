@@ -28,13 +28,21 @@ public partial class GridLineRenderingSystem : SystemBase
 
         Entities.ForEach((in GridLine line) =>
         {
-            var t = (float2)line.Index - (float2)space.Dimensions * 0.5f;
-            t = line.IsVertical ? math.float2(t.x, 0) : math.float2(0, t.y);
+            var t = (float2)0;
+            var s = (float2)appear.Boldness;
 
-            var r = line.IsVertical ? math.PI / 2 : 0;
-            var s = line.IsVertical ? space.Dimensions.x : space.Dimensions.y;
-            var m = MatrixUtil.TRS(t, r, math.float2(s, appear.Boldness));
+            if (!line.IsVertical)
+            {
+                t.y = line.Index - space.Dimensions.y * 0.5f;
+                s.x = space.Dimensions.x;
+            }
+            else
+            {
+                t.x = line.Index - space.Dimensions.x * 0.5f;
+                s.y = space.Dimensions.y;
+            }
 
+            var m = MatrixUtil.TRS2D(t, appear.Depth, 0, s);
             Graphics.RenderMesh(rparams, assets.LineMesh, 0, m);
         })
         .WithoutBurst().Run();

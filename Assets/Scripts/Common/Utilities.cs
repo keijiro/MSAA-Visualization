@@ -9,6 +9,11 @@ public static class MaterialUtil
 
 public static class MatrixUtil
 {
+    public static float4x4 TRS2D(float2 t, float d, float r, float2 s)
+      => float4x4.TRS(math.float3(t, d),
+                      quaternion.RotateZ(r),
+                      math.float3(s, 1));
+
     public static float4x4 TRS(float2 position, float angle, float scale)
       => float4x4.TRS(math.float3(position, 0),
                       quaternion.RotateZ(angle),
