@@ -31,9 +31,10 @@ public partial class PixelRenderingSystem : SystemBase
                           in PixelCoords coords,
                           in Pixel pixel) =>
         {
-            var color = colors.PixelColor * pixel.Coverage;
-            color.a *=
-              math.saturate(1 - math.abs(layer.Index - point.CurrentLayer));
+            var alpha = 1 - math.abs(layer.Index - point.CurrentLayer);
+
+            var color = colors.PixelColor;
+            color.a *= pixel.Coverage * math.saturate(alpha);
 
             var p_gs = math.float2(coords.Value) + 0.5f;
             var p_ss = CoordUtil.GridToScreen(space, p_gs);
