@@ -30,15 +30,18 @@ public partial class GridLineRenderingSystem : SystemBase
             var t = (float2)0;
             var s = (float2)appear.GridLineBoldness;
 
+            var anim = appear.GridLineParam - line.Index * 0.4f;
+            anim = math.smoothstep(0, 1, anim);
+
             if (!line.IsVertical)
             {
                 t.y = line.Index - space.Dimensions.y * 0.5f;
-                s.x = space.Dimensions.x;
+                s.x = space.Dimensions.x * anim;
             }
             else
             {
                 t.x = line.Index - space.Dimensions.x * 0.5f;
-                s.y = space.Dimensions.y;
+                s.y = space.Dimensions.y * anim;
             }
 
             var m = MatrixUtil.TRS2D(t, appear.GridLineDepth, 0, s);

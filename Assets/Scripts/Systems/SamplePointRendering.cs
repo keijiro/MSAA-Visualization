@@ -32,10 +32,15 @@ public partial class SamplePointRenderingSystem : SystemBase
             var color = result.Hit ? colors.HitColor : colors.MissColor;
             color = LayerUtil.ApplyAlpha(color, layer, appear.ActiveLayer);
 
+            var anim = appear.SamplePointParam;
+            anim -= math.dot(coords.Value, math.float2(0.2f, 0.6f));
+            anim = math.smoothstep(0, 1, anim);
+
             var p_gs = point.GetPosition(layer, coords);
             var p_ss = CoordUtil.GridToScreen(space, p_gs);
+            var scale = appear.SamplePointRadius * anim;
 
-            var mtx = MatrixUtil.TRS(p_ss, 0, appear.SamplePointRadius);
+            var mtx = MatrixUtil.TRS(p_ss, 0, scale);
 
             rparams.matProps.SetColor("_Color", color);
             Graphics.RenderMesh(rparams, assets.PointMesh, 0, mtx);

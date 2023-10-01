@@ -347,8 +347,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridLineBoldness: 0.05
   GridLineDepth: 2
+  GridLineParam: 4.5
   SamplePointRadius: 0.12
-  ActiveLayer: 3
+  SamplePointParam: 6.6
+  ActiveLayer: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

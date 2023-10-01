@@ -59,7 +59,9 @@ public struct Appearance : IComponentData
 {
     public float GridLineBoldness;
     public float GridLineDepth;
+    public float GridLineParam;
     public float SamplePointRadius;
+    public float SamplePointParam;
     public float ActiveLayer;
 }
 
