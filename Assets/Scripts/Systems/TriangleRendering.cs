@@ -21,6 +21,7 @@ public partial class TriangleRenderingSystem : SystemBase
         var appear = SystemAPI.GetSingleton<Appearance>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
+        var render = new RenderUtil(assets.TriangleMesh, assets.TriangleMaterial);
 
         var triangle = SystemAPI.GetSingleton<Triangle>();
         var v1 = CoordUtil.GridToScreen(space, triangle.Vertex1);
@@ -30,15 +31,10 @@ public partial class TriangleRenderingSystem : SystemBase
         var color = colors.TriangleColor;
         color.a *= appear.TriangleParam;
 
-        var props = MaterialUtil.SharedPropertyBlock;
-        props.SetColor("_Color", color);
+        var props = render.PropertyBlock;
         props.SetVector("_Vertex1", math.float4(v1, 0, 0));
         props.SetVector("_Vertex2", math.float4(v2, 0, 0));
         props.SetVector("_Vertex3", math.float4(v3, 0, 0));
-
-        var rparams = new RenderParams(assets.TriangleMaterial);
-        rparams.matProps = props;
-
-        Graphics.RenderMesh(rparams, assets.TriangleMesh, 0, Matrix4x4.identity);
+        render.Draw(color);
     }
 }

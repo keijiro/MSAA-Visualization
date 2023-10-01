@@ -12,7 +12,6 @@ public partial class PixelRenderingSystem : SystemBase
         RequireForUpdate<Appearance>();
         RequireForUpdate<ColorScheme>();
         RequireForUpdate<RenderingAssets>();
-        RequireForUpdate<Pixel>();
     }
 
     protected override void OnUpdate()
@@ -21,9 +20,7 @@ public partial class PixelRenderingSystem : SystemBase
         var appear = SystemAPI.GetSingleton<Appearance>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
-
-        var rparams = new RenderParams(assets.PixelMaterial);
-        rparams.matProps = MaterialUtil.SharedPropertyBlock;
+        var render = new RenderUtil(assets.PixelMesh, assets.PixelMaterial);
 
         Entities.ForEach((in Layer layer,
                           in PixelCoords coords,
@@ -36,10 +33,7 @@ public partial class PixelRenderingSystem : SystemBase
             var p_gs = math.float2(coords.Value) + 0.5f;
             var p_ss = CoordUtil.GridToScreen(space, p_gs);
 
-            var mtx = MatrixUtil.TRS2D(p_ss, appear.GridLineDepth, 0, 1);
-
-            rparams.matProps.SetColor("_Color", color);
-            Graphics.RenderMesh(rparams, assets.PixelMesh, 0, mtx);
+            render.Draw(p_ss, appear.GridLineDepth, 0, 1, color);
         })
         .WithoutBurst().Run();
     }

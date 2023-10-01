@@ -20,10 +20,7 @@ public partial class GridLineRenderingSystem : SystemBase
         var appear = SystemAPI.GetSingleton<Appearance>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
-
-        var rparams = new RenderParams(assets.LineMaterial);
-        rparams.matProps = MaterialUtil.SharedPropertyBlock;
-        rparams.matProps.SetColor("_Color", colors.LineColor);
+        var render = new RenderUtil(assets.LineMesh, assets.LineMaterial);
 
         Entities.ForEach((in GridLine line) =>
         {
@@ -44,8 +41,7 @@ public partial class GridLineRenderingSystem : SystemBase
                 s.y = space.Dimensions.y * anim;
             }
 
-            var m = MatrixUtil.TRS2D(t, appear.GridLineDepth, 0, s);
-            Graphics.RenderMesh(rparams, assets.LineMesh, 0, m);
+            render.Draw(t, appear.GridLineDepth, 0, s, colors.LineColor);
         })
         .WithoutBurst().Run();
     }

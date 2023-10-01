@@ -20,9 +20,7 @@ public partial class SamplePointRenderingSystem : SystemBase
         var appear = SystemAPI.GetSingleton<Appearance>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
-
-        var rparams = new RenderParams(assets.PointMaterial);
-        rparams.matProps = MaterialUtil.SharedPropertyBlock;
+        var render = new RenderUtil(assets.PointMesh, assets.PointMaterial);
 
         Entities.ForEach((in Layer layer,
                           in PixelCoords coords,
@@ -40,10 +38,7 @@ public partial class SamplePointRenderingSystem : SystemBase
             var p_ss = CoordUtil.GridToScreen(space, p_gs);
             var scale = appear.SamplePointRadius * anim;
 
-            var mtx = MatrixUtil.TRS(p_ss, 0, scale);
-
-            rparams.matProps.SetColor("_Color", color);
-            Graphics.RenderMesh(rparams, assets.PointMesh, 0, mtx);
+            render.Draw(p_ss, 0, 0, scale, color);
         })
         .WithoutBurst().Run();
     }

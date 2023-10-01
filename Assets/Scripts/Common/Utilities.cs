@@ -13,10 +13,33 @@ public static class MathUtil
     }
 }
 
-public static class MaterialUtil
+public readonly struct RenderUtil
 {
+    readonly RenderParams Params;
+    readonly Mesh Mesh;
+
     public static MaterialPropertyBlock SharedPropertyBlock
       = new MaterialPropertyBlock();
+
+    public MaterialPropertyBlock PropertyBlock => SharedPropertyBlock;
+
+    public RenderUtil(Mesh mesh, Material material)
+      => (Params, Mesh) =
+           (new RenderParams(material){ matProps = SharedPropertyBlock },
+            mesh);
+
+    public void Draw
+      (float2 pos, float depth, float angle, float2 scale, Color color)
+    {
+        Params.matProps.SetColor("_Color", color);
+        Graphics.RenderMesh(Params, Mesh, 0, MatrixUtil.TRS2D(pos, depth, angle, scale));
+    }
+
+    public void Draw(Color color)
+    {
+        Params.matProps.SetColor("_Color", color);
+        Graphics.RenderMesh(Params, Mesh, 0, float4x4.identity);
+    }
 }
 
 public static class MatrixUtil
