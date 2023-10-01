@@ -236,14 +236,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vertex1:
-    x: 1
-    y: 1.4
+    x: 0.27
+    y: 0.62
   Vertex2:
     x: 7.71
-    y: 3.13
+    y: 2.5
   Vertex3:
     x: 5.71
-    y: 6.18
+    y: 7.61
 --- !u!4 &684860205
 Transform:
   m_ObjectHideFlags: 0
@@ -290,9 +290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e233da2bc89468b4a8f78b9b594ea54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitColor: {r: 0.313348, g: 0.53923607, b: 0.72199994, a: 1}
-  MissColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
-  LineColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+  HitColor: {r: 0.30588236, g: 0.58431375, b: 0.8117648, a: 1}
+  MissColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  LineColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   PixelColor: {r: 0.30588236, g: 0.58431375, b: 0.8117648, a: 1}
   TriangleColor: {r: 0.30522352, g: 0.5861625, b: 0.8117647, a: 0.5294118}
 --- !u!4 &1433103930
@@ -349,7 +349,7 @@ MonoBehaviour:
   SamplePointParam: 6.6
   PixelParam: 1
   TriangleParam: 1
-  ActiveLayer: 0
+  ActiveLayer: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

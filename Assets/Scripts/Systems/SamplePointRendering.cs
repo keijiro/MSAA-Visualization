@@ -34,6 +34,9 @@ public partial class SamplePointRenderingSystem : SystemBase
             anim -= math.dot(coords.Value, math.float2(0.2f, 0.6f));
             anim = MathUtil.smootherstep(anim);
 
+            var fade = math.saturate(1 - (appear.SamplePointParam - 10));
+            color.a *= fade;
+
             var p_gs = point.GetPosition(layer, coords);
             var p_ss = CoordUtil.GridToScreen(space, p_gs);
             var scale = appear.SamplePointRadius * anim;
