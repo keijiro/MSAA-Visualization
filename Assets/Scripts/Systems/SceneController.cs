@@ -1,6 +1,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public partial class SceneControllerSystem : SystemBase
@@ -42,6 +43,9 @@ public partial class SceneControllerSystem : SystemBase
         appear.TriangleParam = 0;
         GlobalAppearance = appear;
 
+        var label = GameObject.Find("Label").GetComponent<Text>();
+        label.text = "";
+
         await Linear(0, 2.6f, 1.5f, (x) => {
             appear.GridLineParam = x;
             GlobalAppearance = appear;
@@ -57,6 +61,9 @@ public partial class SceneControllerSystem : SystemBase
             });
 
             await Awaitable.WaitForSecondsAsync(0.3f);
+
+            label.text = layer == 0 ?
+              "No AA" : $"MSAA x{math.pow(2, layer)}";
 
             await Linear(0, 6.6f, 1.5f, (x) => {
                 appear.SamplePointParam = x;
@@ -74,18 +81,20 @@ public partial class SceneControllerSystem : SystemBase
 
             await Linear(0, 1, 0.5f, (x) => {
                 appear.PixelParam = x;
+                appear.SamplePointParam = 10 + x;
                 GlobalAppearance = appear;
             });
 
             await Awaitable.WaitForSecondsAsync(2);
 
+            label.text = "";
+
             await Linear(0, 1, 0.5f, (x) => {
-                appear.SamplePointParam = 10 + x;
                 appear.PixelParam = 1 - x;
                 GlobalAppearance = appear;
             });
 
-            await Awaitable.WaitForSecondsAsync(1);
+            await Awaitable.WaitForSecondsAsync(0.5f);
         }
     }
 }
