@@ -36,6 +36,15 @@ public static class CoordUtil
          + coords.Value.y * grid.Dimensions.x + coords.Value.x);
 }
 
+public static class LayerUtil
+{
+    public static Color ApplyAlpha(Color color, in Layer layer, float select)
+    {
+        color.a *= math.saturate(1 - math.abs(layer.Index - select));
+        return color;
+    }
+}
+
 public static class TriangleUtil
 {
     static float Cross(float2 v1, float2 v2)

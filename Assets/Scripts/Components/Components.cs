@@ -55,16 +55,12 @@ public struct Triangle : IComponentData
 
 #region Rendering
 
-public struct GridLineAppearance : IComponentData
+public struct Appearance : IComponentData
 {
-    public float Boldness;
-    public float Depth;
-}
-
-public struct SamplePointAppearance : IComponentData
-{
-    public float Radius;
-    public float CurrentLayer;
+    public float GridLineBoldness;
+    public float GridLineDepth;
+    public float SamplePointRadius;
+    public float ActiveLayer;
 }
 
 public struct ColorScheme : IComponentData

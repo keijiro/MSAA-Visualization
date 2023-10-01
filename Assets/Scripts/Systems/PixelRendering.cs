@@ -9,39 +9,35 @@ public partial class PixelRenderingSystem : SystemBase
     protected override void OnCreate()
     {
         RequireForUpdate<GridSpace>();
-        RequireForUpdate<GridLineAppearance>();
-        RequireForUpdate<SamplePointAppearance>();
-        RequireForUpdate<RenderingAssets>();
+        RequireForUpdate<Appearance>();
         RequireForUpdate<ColorScheme>();
+        RequireForUpdate<RenderingAssets>();
     }
 
     protected override void OnUpdate()
     {
         var space = SystemAPI.GetSingleton<GridSpace>();
-        var grid = SystemAPI.GetSingleton<GridLineAppearance>();
-        var point = SystemAPI.GetSingleton<SamplePointAppearance>();
-        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
+        var appear = SystemAPI.GetSingleton<Appearance>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
+        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
 
-        var props = MaterialUtil.SharedPropertyBlock;
-        var rparams = new RenderParams(assets.PixelMaterial)
-          { matProps = props };
+        var rparams = new RenderParams(assets.PixelMaterial);
+        rparams.matProps = MaterialUtil.SharedPropertyBlock;
 
         Entities.ForEach((in Layer layer,
                           in PixelCoords coords,
                           in Pixel pixel) =>
         {
-            var alpha = 1 - math.abs(layer.Index - point.CurrentLayer);
-
             var color = colors.PixelColor;
-            color.a *= pixel.Coverage * math.saturate(alpha);
+            color = LayerUtil.ApplyAlpha(color, layer, appear.ActiveLayer);
+            color.a *= pixel.Coverage;
 
             var p_gs = math.float2(coords.Value) + 0.5f;
             var p_ss = CoordUtil.GridToScreen(space, p_gs);
 
-            var mtx = MatrixUtil.TRS2D(p_ss, grid.Depth, 0, 1);
+            var mtx = MatrixUtil.TRS2D(p_ss, appear.GridLineDepth, 0, 1);
 
-            props.SetColor("_Color", color);
+            rparams.matProps.SetColor("_Color", color);
             Graphics.RenderMesh(rparams, assets.PixelMesh, 0, mtx);
         })
         .WithoutBurst().Run();

@@ -9,27 +9,26 @@ public partial class GridLineRenderingSystem : SystemBase
     protected override void OnCreate()
     {
         RequireForUpdate<GridSpace>();
-        RequireForUpdate<GridLineAppearance>();
-        RequireForUpdate<RenderingAssets>();
+        RequireForUpdate<Appearance>();
         RequireForUpdate<ColorScheme>();
+        RequireForUpdate<RenderingAssets>();
     }
 
     protected override void OnUpdate()
     {
         var space = SystemAPI.GetSingleton<GridSpace>();
-        var appear = SystemAPI.GetSingleton<GridLineAppearance>();
-        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
+        var appear = SystemAPI.GetSingleton<Appearance>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
+        var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
 
-        var props = MaterialUtil.SharedPropertyBlock;
-        props.SetColor("_Color", colors.LineColor);
-
-        var rparams = new RenderParams(assets.LineMaterial) { matProps = props };
+        var rparams = new RenderParams(assets.LineMaterial);
+        rparams.matProps = MaterialUtil.SharedPropertyBlock;
+        rparams.matProps.SetColor("_Color", colors.LineColor);
 
         Entities.ForEach((in GridLine line) =>
         {
             var t = (float2)0;
-            var s = (float2)appear.Boldness;
+            var s = (float2)appear.GridLineBoldness;
 
             if (!line.IsVertical)
             {
@@ -42,7 +41,7 @@ public partial class GridLineRenderingSystem : SystemBase
                 s.y = space.Dimensions.y;
             }
 
-            var m = MatrixUtil.TRS2D(t, appear.Depth, 0, s);
+            var m = MatrixUtil.TRS2D(t, appear.GridLineDepth, 0, s);
             Graphics.RenderMesh(rparams, assets.LineMesh, 0, m);
         })
         .WithoutBurst().Run();

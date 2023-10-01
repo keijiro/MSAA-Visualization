@@ -274,7 +274,6 @@ GameObject:
   - component: {fileID: 1433103931}
   - component: {fileID: 1433103929}
   - component: {fileID: 1433103932}
-  - component: {fileID: 1433103933}
   m_Layer: 0
   m_Name: Rendering
   m_TagString: Untagged
@@ -343,25 +342,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1433103928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12a8a87e77dfae3419eb93f6677221c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 92071eda97156994ebb3d22c4f537065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 0.12
-  CurrentLayer: 3
---- !u!114 &1433103933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433103928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d1eb9867a557445807e7b72c16009a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Boldness: 0.08
-  Depth: 2
+  GridLineBoldness: 0.05
+  GridLineDepth: 2
+  SamplePointRadius: 0.12
+  ActiveLayer: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
