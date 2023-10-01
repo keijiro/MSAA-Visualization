@@ -62,6 +62,8 @@ public struct Appearance : IComponentData
     public float GridLineParam;
     public float SamplePointRadius;
     public float SamplePointParam;
+    public float PixelParam;
+    public float TriangleParam;
     public float ActiveLayer;
 }
 

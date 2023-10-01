@@ -12,6 +12,7 @@ public partial class PixelRenderingSystem : SystemBase
         RequireForUpdate<Appearance>();
         RequireForUpdate<ColorScheme>();
         RequireForUpdate<RenderingAssets>();
+        RequireForUpdate<Pixel>();
     }
 
     protected override void OnUpdate()
@@ -30,7 +31,7 @@ public partial class PixelRenderingSystem : SystemBase
         {
             var color = colors.PixelColor;
             color = LayerUtil.ApplyAlpha(color, layer, appear.ActiveLayer);
-            color.a *= pixel.Coverage;
+            color.a *= pixel.Coverage * appear.PixelParam;
 
             var p_gs = math.float2(coords.Value) + 0.5f;
             var p_ss = CoordUtil.GridToScreen(space, p_gs);

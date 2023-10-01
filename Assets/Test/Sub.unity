@@ -347,6 +347,8 @@ MonoBehaviour:
   GridLineParam: 2.6
   SamplePointRadius: 0.12
   SamplePointParam: 6.6
+  PixelParam: 1
+  TriangleParam: 1
   ActiveLayer: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
