@@ -34,7 +34,7 @@ public partial class SamplePointRenderingSystem : SystemBase
 
             var anim = appear.SamplePointParam;
             anim -= math.dot(coords.Value, math.float2(0.2f, 0.6f));
-            anim = math.smoothstep(0, 1, anim);
+            anim = MathUtil.smootherstep(anim);
 
             var p_gs = point.GetPosition(layer, coords);
             var p_ss = CoordUtil.GridToScreen(space, p_gs);

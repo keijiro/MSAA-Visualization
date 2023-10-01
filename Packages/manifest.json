@@ -2,7 +2,7 @@
   "dependencies": {
     "com.unity.entities.graphics": "1.0.16",
     "com.unity.recorder": "4.0.1",
-    "com.unity.render-pipelines.universal": "14.0.8",
+    "com.unity.render-pipelines.universal": "15.0.6",
     "jp.keijiro.klak.motion": "1.1.0",
     "jp.keijiro.metamesh": "1.2.0",
     "jp.keijiro.metatex": "1.0.4",

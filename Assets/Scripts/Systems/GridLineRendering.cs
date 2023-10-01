@@ -30,8 +30,8 @@ public partial class GridLineRenderingSystem : SystemBase
             var t = (float2)0;
             var s = (float2)appear.GridLineBoldness;
 
-            var anim = appear.GridLineParam - line.Index * 0.4f;
-            anim = math.smoothstep(0, 1, anim);
+            var anim = appear.GridLineParam - line.Index * 0.2f;
+            anim = MathUtil.smootherstep(anim);
 
             if (!line.IsVertical)
             {

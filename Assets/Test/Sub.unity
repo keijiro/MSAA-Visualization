@@ -67,9 +67,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -347,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridLineBoldness: 0.05
   GridLineDepth: 2
-  GridLineParam: 4.5
+  GridLineParam: 2.6
   SamplePointRadius: 0.12
   SamplePointParam: 6.6
   ActiveLayer: 0

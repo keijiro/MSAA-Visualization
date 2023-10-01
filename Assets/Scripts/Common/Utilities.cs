@@ -1,6 +1,18 @@
 using UnityEngine;
 using Unity.Mathematics;
 
+public static class MathUtil
+{
+    public static float smootherstep(float e0, float e1, float x)
+      => smootherstep((x - e0) / (e1 - e0));
+
+    public static float smootherstep(float x)
+    {
+        x = math.saturate(x);
+        return x * x * x * (x * (x * 6 - 15) + 10);
+    }
+}
+
 public static class MaterialUtil
 {
     public static MaterialPropertyBlock SharedPropertyBlock
