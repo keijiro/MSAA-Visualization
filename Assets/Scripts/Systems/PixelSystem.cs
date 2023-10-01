@@ -25,6 +25,7 @@ public partial struct PixelUpdaetSystem : ISystem
 
         state.Dependency = job1.Schedule(state.Dependency);
         state.Dependency = job2.Schedule(state.Dependency);
+        state.Dependency = buffer.Dispose(state.Dependency);
     }
 
 }
