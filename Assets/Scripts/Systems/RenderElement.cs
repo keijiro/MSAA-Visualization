@@ -4,7 +4,7 @@ using UnityEngine;
 
 [WorldSystemFilter
  (WorldSystemFilterFlags.Default | WorldSystemFilterFlags.Editor)]
-public partial class PixelRenderingSystem : SystemBase
+public partial class RenderElementSystem : SystemBase
 {
     protected override void OnCreate()
     {
@@ -20,20 +20,16 @@ public partial class PixelRenderingSystem : SystemBase
         var appear = SystemAPI.GetSingleton<Appearance>();
         var colors = SystemAPI.GetSingleton<ColorScheme>();
         var assets = SystemAPI.ManagedAPI.GetSingleton<RenderingAssets>();
-        var render = new RenderUtil(assets.PixelMesh, assets.PixelMaterial);
 
-        Entities.ForEach((in Layer layer,
-                          in PixelCoords coords,
-                          in Pixel pixel) =>
+        var point = new RenderUtil(assets.PointMesh, assets.PointMaterial);
+        var quad = new RenderUtil(assets.QuadMesh, assets.QuadMaterial);
+
+        Entities.ForEach((in RenderElement e) =>
         {
-            var color = colors.PixelColor;
-            color = LayerUtil.ApplyAlpha(color, layer, appear.ActiveLayer);
-            color.a *= pixel.Coverage * appear.PixelParam;
-
-            var p_gs = math.float2(coords.Value) + 0.5f;
-            var p_ss = CoordUtil.GridToScreen(space, p_gs);
-
-            render.Draw(p_ss, appear.GridLineDepth, 0, 1, color);
+            if (e.Type == RenderElement.ElementType.Point)
+                point.Draw(e.Position, e.Depth, e.Angle, e.Scale, e.Color);
+            else if (e.Type == RenderElement.ElementType.Quad)
+                quad.Draw(e.Position, e.Depth, e.Angle, e.Scale, e.Color);
         })
         .WithoutBurst().Run();
     }

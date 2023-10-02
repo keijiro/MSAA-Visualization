@@ -13,7 +13,7 @@ public class ColorSchemeAuthoring : MonoBehaviour
     {
         public override void Bake(ColorSchemeAuthoring src)
           => AddComponent(GetEntity(TransformUsageFlags.None), 
-                          new ColorScheme()
+                          new ColorScheme
                             { HitColor = src.HitColor,
                               MissColor = src.MissColor,
                               LineColor = src.LineColor,

@@ -12,8 +12,8 @@ public class TriangleAuthoring : MonoBehaviour
     {
         public override void Bake(TriangleAuthoring src)
           => AddComponent(GetEntity(TransformUsageFlags.None),
-                          new Triangle(){ Vertex1 = src.Vertex1,
-                                          Vertex2 = src.Vertex2,
-                                          Vertex3 = src.Vertex3 });
+                          new Triangle{ Vertex1 = src.Vertex1,
+                                        Vertex2 = src.Vertex2,
+                                        Vertex3 = src.Vertex3 });
     }
 }

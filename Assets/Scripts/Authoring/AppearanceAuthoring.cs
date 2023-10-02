@@ -17,7 +17,7 @@ public class AppearanceAuthoring : MonoBehaviour
         public override void Bake(AppearanceAuthoring src)
           => AddComponent
                (GetEntity(TransformUsageFlags.None),
-                new Appearance()
+                new Appearance
                   { GridLineBoldness = src.GridLineBoldness,
                     GridLineDepth = src.GridLineDepth,
                     GridLineParam = src.GridLineParam,

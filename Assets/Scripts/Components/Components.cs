@@ -55,6 +55,17 @@ public struct Triangle : IComponentData
 
 #region Rendering
 
+public struct RenderElement : IComponentData
+{
+    public enum ElementType { None, Point, Quad }
+    public ElementType Type;
+    public float2 Position;
+    public float Depth;
+    public float Angle;
+    public float2 Scale;
+    public Color Color;
+}
+
 public struct Appearance : IComponentData
 {
     public float GridLineBoldness;
@@ -79,12 +90,10 @@ public struct ColorScheme : IComponentData
 public class RenderingAssets : IComponentData
 {
     public Mesh PointMesh;
-    public Mesh LineMesh;
-    public Mesh PixelMesh;
+    public Mesh QuadMesh;
     public Mesh TriangleMesh;
     public Material PointMaterial;
-    public Material LineMaterial;
-    public Material PixelMaterial;
+    public Material QuadMaterial;
     public Material TriangleMaterial;
 }
 
