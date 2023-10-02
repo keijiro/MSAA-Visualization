@@ -5,7 +5,7 @@ using Unity.Mathematics;
 
 [WorldSystemFilter
  (WorldSystemFilterFlags.Default | WorldSystemFilterFlags.Editor)]
-public partial struct PixelUpdaetSystem : ISystem
+public partial struct PixelUpdateSystem : ISystem
 {
     public void OnCreate(ref SystemState state)
       => state.RequireForUpdate<GridSpace>();
