@@ -130,9 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 395066939}
   - component: {fileID: 395066938}
-  - component: {fileID: 395066940}
-  - component: {fileID: 395066941}
-  - component: {fileID: 395066942}
   m_Layer: 0
   m_Name: Grid Space
   m_TagString: Untagged
@@ -170,42 +167,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &395066940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395066936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56a2813a60f60f949bea2ef114ec8041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &395066941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395066936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0057ebfe1e75e409789b518222fff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &395066942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395066936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6e3e5705c4c094cbe88857244f129b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &684860202
 GameObject:
   m_ObjectHideFlags: 0
