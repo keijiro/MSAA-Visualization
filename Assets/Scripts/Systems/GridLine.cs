@@ -35,15 +35,14 @@ partial struct GridLineUpdateJob : IJobEntity
 
     void Execute(in GridLine line, ref RenderElement render)
     {
-        var pos = line.Index - (float2)Space.Dimensions * 0.5f;
-        //var scale = (float2)Space.Dimensions;// * Appear.GridLineParam;
-        var scale = (float2)Appear.GridLineParam;
-        scale *= (1 + (float2)Space.Dimensions * 0.2f);
+        const float delay = 0.2f;
+        var anim = (float2)Appear.GridLineParam;
+        anim *= 1 + (float2)Space.Dimensions * delay;
+        anim -=(float2)line.Index * delay;
+        anim = MathUtil.smootherstep(anim);
 
-        scale -= (float2)line.Index * 0.2f;
-        scale.x = MathUtil.smootherstep(scale.x);
-        scale.y = MathUtil.smootherstep(scale.y);
-        scale *= Space.Dimensions;
+        var pos = line.Index - (float2)Space.Dimensions * 0.5f;
+        var scale = Space.Dimensions * anim;
 
         if (!line.IsVertical)
         {
@@ -55,26 +54,6 @@ partial struct GridLineUpdateJob : IJobEntity
             pos.y = 0;
             scale.x = Appear.GridLineBoldness;
         }
-
-        /*
-        var pos = (float2)0;
-        var scale = (float2)Appear.GridLineBoldness;
-
-        //var speed = math.float2(Space.Dimensions) * 0.2f + 1;
-        //var anim = Appear.GridLineParam * speed - line.Index * 0.2f;
-        //anim = MathUtil.smootherstep(anim);
-
-        if (!line.IsVertical)
-        {
-            pos.y = line.Index - Space.Dimensions.y * 0.5f;
-            scale.x = Space.Dimensions.x * anim;
-        }
-        else
-        {
-            pos.x = line.Index - Space.Dimensions.x * 0.5f;
-            scale.y = Space.Dimensions.y * anim;
-        }
-        */
 
         render = new RenderElement
         {

@@ -9,7 +9,16 @@ public static class MathUtil
     public static float smootherstep(float e0, float e1, float x)
       => smootherstep((x - e0) / (e1 - e0));
 
+    public static float2 smootherstep(float2 e0, float2 e1, float2 x)
+      => smootherstep((x - e0) / (e1 - e0));
+
     public static float smootherstep(float x)
+    {
+        x = math.saturate(x);
+        return x * x * x * (x * (x * 6 - 15) + 10);
+    }
+
+    public static float2 smootherstep(float2 x)
     {
         x = math.saturate(x);
         return x * x * x * (x * (x * 6 - 15) + 10);
