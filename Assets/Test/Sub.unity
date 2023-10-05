@@ -286,13 +286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
   QuadMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
-  LineMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
-  PixelMesh: {fileID: -8670151273213183110, guid: 5ab3fb9776320d841b62cfece27ca47e, type: 3}
   TriangleMesh: {fileID: -8670151273213183110, guid: 63262a7e58bcd6c48a8744ed11ca5013, type: 3}
   PointMaterial: {fileID: 2100000, guid: 412182e03503b334f97491ea5de388b4, type: 2}
   QuadMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
-  LineMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
-  PixelMaterial: {fileID: -876546973899608171, guid: 26b127fa06321bb4fb8282992ba59748, type: 3}
   TriangleMaterial: {fileID: -876546973899608171, guid: 7bc9af8aded7c0b4db99945bae1db184, type: 3}
 --- !u!114 &1433103932
 MonoBehaviour:
@@ -308,12 +304,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridLineBoldness: 0.05
   GridLineDepth: 2
-  GridLineParam: 2.6
   SamplePointRadius: 0.12
-  SamplePointParam: 6.6
+  ActiveLayer: 0
+  GridLineParam: 1
+  SamplePointParam: 1
   PixelParam: 1
   TriangleParam: 1
-  ActiveLayer: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

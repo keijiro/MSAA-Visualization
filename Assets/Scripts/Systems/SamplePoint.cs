@@ -47,11 +47,9 @@ partial struct SamplePointUpdateJob : IJobEntity
 
         var color = hit ? Colors.HitColor : Colors.MissColor;
         color = LayerUtil.ApplyAlpha(color, layer, Appear.ActiveLayer);
-        color.a *= math.saturate(1 - (Appear.SamplePointParam - 10));
 
-        var anim = Appear.SamplePointParam;
-        anim -= math.dot(coords.Value, math.float2(0.2f, 0.6f));
-        anim = MathUtil.smootherstep(anim);
+        var scale = Appear.SamplePointRadius;
+        scale *= AnimUtil.Scan(Space, coords, Appear.SamplePointParam);
 
         result = new SampleResult{ Hit = hit };
 
@@ -61,7 +59,7 @@ partial struct SamplePointUpdateJob : IJobEntity
             Position = CoordUtil.GridToScreen(Space, pos),
             Depth = 0,
             Angle = 0,
-            Scale = Appear.SamplePointRadius * anim,
+            Scale = scale,
             Color = color
         };
     }

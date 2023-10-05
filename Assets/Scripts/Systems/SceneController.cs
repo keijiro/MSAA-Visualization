@@ -1,7 +1,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 
 public partial class SceneControllerSystem : SystemBase
@@ -43,14 +42,41 @@ public partial class SceneControllerSystem : SystemBase
         appear.TriangleParam = 0;
         GlobalAppearance = appear;
 
-        var label = GameObject.Find("Label").GetComponent<Text>();
-        label.text = "";
-
-        await Linear(0, 2.6f, 1.5f, (x) => {
+        await Linear(0, 1, 1.5f, (x) => {
             appear.GridLineParam = x;
             GlobalAppearance = appear;
         });
 
+        appear.ActiveLayer = 0;
+
+        await Linear(0, 1, 0.5f, (x) => {
+            appear.TriangleParam = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(0, 1, 1.5f, (x) => {
+            appear.SamplePointParam = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(1, 0, 0.5f, (x) => {
+            appear.TriangleParam = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(0, 1, 1.5f, (x) => {
+            appear.PixelParam = x;
+            appear.SamplePointParam = 1 + x;
+            GlobalAppearance = appear;
+        });
+
+        /*
         for (var layer = 0; layer < 4; layer++)
         {
             appear.ActiveLayer = layer;
@@ -61,9 +87,6 @@ public partial class SceneControllerSystem : SystemBase
             });
 
             await Awaitable.WaitForSecondsAsync(0.3f);
-
-            label.text = layer == 0 ?
-              "No AA" : $"MSAA x{math.pow(2, layer)}";
 
             await Linear(0, 6.6f, 1.5f, (x) => {
                 appear.SamplePointParam = x;
@@ -87,8 +110,6 @@ public partial class SceneControllerSystem : SystemBase
 
             await Awaitable.WaitForSecondsAsync(2);
 
-            label.text = "";
-
             await Linear(0, 1, 0.5f, (x) => {
                 appear.PixelParam = 1 - x;
                 GlobalAppearance = appear;
@@ -96,5 +117,6 @@ public partial class SceneControllerSystem : SystemBase
 
             await Awaitable.WaitForSecondsAsync(0.5f);
         }
+        */
     }
 }

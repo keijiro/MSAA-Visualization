@@ -68,7 +68,7 @@ partial struct PixelUpdateJob : IJobEntity
 
         var color = Colors.PixelColor;
         color = LayerUtil.ApplyAlpha(color, layer, Appear.ActiveLayer);
-        color.a *= cover * Appear.PixelParam;
+        color.a *= cover * AnimUtil.Scan(Space, coords, Appear.PixelParam);
 
         var pos = math.float2(coords.Value) + 0.5f;
 

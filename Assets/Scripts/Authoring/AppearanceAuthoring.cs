@@ -5,12 +5,14 @@ public class AppearanceAuthoring : MonoBehaviour
 {
     public float GridLineBoldness = 0.01f;
     public float GridLineDepth = 1;
-    public float GridLineParam = 0;
     public float SamplePointRadius = 0.1f;
-    public float SamplePointParam = 0;
-    public float PixelParam = 0;
-    public float TriangleParam = 0;
-    public float ActiveLayer = 0;
+    [Space]
+    [Range(0, 3)] public float ActiveLayer = 0;
+    [Space]
+    [Range(0, 1)] public float GridLineParam = 0;
+    [Range(0, 2)] public float SamplePointParam = 0;
+    [Range(0, 2)] public float PixelParam = 0;
+    [Range(0, 1)] public float TriangleParam = 0;
 
     class Baker : Baker<AppearanceAuthoring>
     {

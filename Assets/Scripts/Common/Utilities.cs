@@ -54,6 +54,23 @@ public static class TriangleUtil
       => TestPoint(pt, tri.Vertex1, tri.Vertex2, tri.Vertex3);
 }
 
+public static class AnimUtil
+{
+    public static float Scan
+      (in GridSpace space, in PixelCoords coords, float time)
+    {
+        var grad = math.float2(0.2f, 0.6f);
+        var comp = 1 + math.dot(grad, space.Dimensions);
+        var t_in  = comp * time;
+        var t_out = comp * (2 - time);
+        t_in  -= math.dot(grad, coords.Value);
+        t_out -= math.dot(grad, space.Dimensions - 1 - coords.Value);
+        t_in  = MathUtil.smootherstep(t_in);
+        t_out = MathUtil.smootherstep(t_out);
+        return math.min(t_in, t_out);
+    }
+}
+
 public readonly struct RenderUtil
 {
     readonly RenderParams Params;
