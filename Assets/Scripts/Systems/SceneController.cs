@@ -47,6 +47,8 @@ public partial class SceneControllerSystem : SystemBase
             GlobalAppearance = appear;
         });
 
+        // No MSAA
+
         appear.ActiveLayer = 0;
 
         await Linear(0, 1, 0.5f, (x) => {
@@ -76,47 +78,78 @@ public partial class SceneControllerSystem : SystemBase
             GlobalAppearance = appear;
         });
 
-        /*
-        for (var layer = 0; layer < 4; layer++)
-        {
-            appear.ActiveLayer = layer;
+        await Awaitable.WaitForSecondsAsync(0.5f);
 
-            await Linear(0, 1, 0.5f, (x) => {
-                appear.TriangleParam = x;
-                GlobalAppearance = appear;
-            });
+        await Linear(1, 2, 1.5f, (x) => {
+            appear.PixelParam = x;
+            GlobalAppearance = appear;
+        });
 
-            await Awaitable.WaitForSecondsAsync(0.3f);
+        await Awaitable.WaitForSecondsAsync(0.5f);
 
-            await Linear(0, 6.6f, 1.5f, (x) => {
-                appear.SamplePointParam = x;
-                GlobalAppearance = appear;
-            });
+        // x2 MSAA
 
-            await Awaitable.WaitForSecondsAsync(0.3f);
+        appear.ActiveLayer = 1;
 
-            await Linear(1, 0, 0.5f, (x) => {
-                appear.TriangleParam = x;
-                GlobalAppearance = appear;
-            });
+        await Linear(0, 1, 0.5f, (x) => {
+            appear.TriangleParam = x;
+            GlobalAppearance = appear;
+        });
 
-            await Awaitable.WaitForSecondsAsync(1);
+        await Awaitable.WaitForSecondsAsync(0.5f);
 
-            await Linear(0, 1, 0.5f, (x) => {
-                appear.PixelParam = x;
-                appear.SamplePointParam = 10 + x;
-                GlobalAppearance = appear;
-            });
+        await Linear(0, 1, 1.5f, (x) => {
+            appear.SamplePointParam = x;
+            GlobalAppearance = appear;
+        });
 
-            await Awaitable.WaitForSecondsAsync(2);
+        await Awaitable.WaitForSecondsAsync(0.5f);
 
-            await Linear(0, 1, 0.5f, (x) => {
-                appear.PixelParam = 1 - x;
-                GlobalAppearance = appear;
-            });
+        await Linear(1, 0, 0.5f, (x) => {
+            appear.TriangleParam = x;
+            GlobalAppearance = appear;
+        });
 
-            await Awaitable.WaitForSecondsAsync(0.5f);
-        }
-        */
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(0, 1, 1.5f, (x) => {
+            appear.PixelParam = x;
+            appear.SamplePointParam = 1 + x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(1);
+
+        // x4 MSAA
+
+        await Linear(0, 1, 1.5f, (x) => {
+            appear.ActiveLayer = 1 + x;
+            appear.SamplePointParam = x;
+            appear.TriangleParam = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(1);
+
+        // x8 MSAA
+
+        await Linear(0, 1, 1.5f, (x) => {
+            appear.ActiveLayer = 2 + x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(1, 2, 1.5f, (x) => {
+            appear.SamplePointParam = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(1, 0, 0.5f, (x) => {
+            appear.TriangleParam = x;
+            GlobalAppearance = appear;
+        });
     }
 }
