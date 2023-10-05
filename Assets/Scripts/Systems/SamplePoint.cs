@@ -45,6 +45,10 @@ partial struct SamplePointUpdateJob : IJobEntity
         var pos = point.GetPosition(layer, coords);
         var hit = TriangleUtil.TestPoint(pos, Triangle);
 
+        var center = point.GetPosition(new Layer{Index = 0}, coords);
+        var snap = MathUtil.smootherstep(Appear.SamplePointSnap);
+        pos = math.lerp(center, pos, snap);
+
         var color = hit ? Colors.HitColor : Colors.MissColor;
         color = LayerUtil.ApplyAlpha(color, layer, Appear.ActiveLayer);
 

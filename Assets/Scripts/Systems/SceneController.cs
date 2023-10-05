@@ -6,7 +6,7 @@ using System;
 public partial class SceneControllerSystem : SystemBase
 {
     protected override void OnCreate()
-      => ControllerFunction();
+      => ControllerFunctionFragments();
 
     protected override void OnUpdate() {}
 
@@ -14,6 +14,12 @@ public partial class SceneControllerSystem : SystemBase
         get => SystemAPI.GetSingleton<Appearance>();
         set => SystemAPI.SetSingleton<Appearance>(value);
     }
+
+    ColorScheme GlobalColors {
+        get => SystemAPI.GetSingleton<ColorScheme>();
+        set => SystemAPI.SetSingleton<ColorScheme>(value);
+    }
+
 
     async Awaitable Linear
       (float start, float end, float duration, Action<float> action)
@@ -30,7 +36,7 @@ public partial class SceneControllerSystem : SystemBase
         action.Invoke(end);
     }
 
-    async void ControllerFunction()
+    async void ControllerFunctionBasics()
     {
         while (!SystemAPI.HasSingleton<Appearance>())
             await Awaitable.NextFrameAsync();
@@ -150,6 +156,75 @@ public partial class SceneControllerSystem : SystemBase
         await Linear(1, 0, 0.5f, (x) => {
             appear.TriangleParam = x;
             GlobalAppearance = appear;
+        });
+    }
+
+    async void ControllerFunctionFragments()
+    {
+        while (!SystemAPI.HasSingleton<Appearance>())
+            await Awaitable.NextFrameAsync();
+
+        var appear = GlobalAppearance;
+        var colors = GlobalColors;
+        var palette = colors;
+
+        appear.ActiveLayer = 2;
+        appear.GridLineParam = 1;
+        appear.SamplePointSnap = 1;
+        appear.PixelParam = 1;
+        appear.TriangleParam = 1;
+        colors.HitColor = palette.MissColor;
+        colors.PixelColor.a = 0;
+
+        GlobalAppearance = appear;
+        GlobalColors = colors;
+
+        await Linear(0, 1, 1, (x) => {
+            appear.SamplePointParam = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(1, 0, 0.2f, (x) => {
+            colors.HitColor.a = colors.MissColor.a = x;
+            GlobalColors = colors;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        appear.SamplePointSnap = 0;
+        GlobalAppearance = appear;
+
+        colors.HitColor = palette.HitColor;
+
+        await Linear(0, 1, 0.2f, (x) => {
+            colors.HitColor.a =  x;
+            GlobalColors = colors;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(0, 1, 0.5f, (x) => {
+            appear.SamplePointSnap = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(1, 0, 0.5f, (x) => {
+            appear.SamplePointSnap = x;
+            GlobalAppearance = appear;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Linear(0, 1, 0.2f, (x) => {
+            appear.TriangleParam = 1 - x;
+            colors.HitColor.a = 1 - x;
+            colors.PixelColor.a = x;
+            GlobalAppearance = appear;
+            GlobalColors = colors;
         });
     }
 }

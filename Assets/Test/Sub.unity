@@ -254,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitColor: {r: 0.30588236, g: 0.58431375, b: 0.8117648, a: 1}
   MissColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  FragColor: {r: 0.87843144, g: 0.4039216, b: 0.21960786, a: 1}
   LineColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   PixelColor: {r: 0.30588236, g: 0.58431375, b: 0.8117648, a: 1}
   TriangleColor: {r: 0.30522352, g: 0.5861625, b: 0.8117647, a: 0.5294118}
@@ -305,9 +306,10 @@ MonoBehaviour:
   GridLineBoldness: 0.05
   GridLineDepth: 2
   SamplePointRadius: 0.12
-  ActiveLayer: 0
+  ActiveLayer: 2
   GridLineParam: 1
   SamplePointParam: 1
+  SamplePointSnap: 1
   PixelParam: 1
   TriangleParam: 1
 --- !u!1660057539 &9223372036854775807
