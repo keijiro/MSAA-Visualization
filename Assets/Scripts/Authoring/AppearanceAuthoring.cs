@@ -8,6 +8,7 @@ public class AppearanceAuthoring : MonoBehaviour
     public float SamplePointRadius = 0.1f;
     [Space]
     [Range(0, 3)] public float ActiveLayer = 0;
+    public Appearance.Source SampleSource;
     [Space]
     [Range(0, 1)] public float GridLineParam = 0;
     [Range(0, 2)] public float SamplePointParam = 0;
@@ -27,6 +28,7 @@ public class AppearanceAuthoring : MonoBehaviour
                     SamplePointRadius = src.SamplePointRadius,
                     SamplePointParam = src.SamplePointParam,
                     SamplePointSnap = src.SamplePointSnap,
+                    SampleSource = src.SampleSource,
                     PixelParam = src.PixelParam,
                     TriangleParam = src.TriangleParam,
                     ActiveLayer = src.ActiveLayer });

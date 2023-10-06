@@ -73,12 +73,14 @@ public struct RenderElement : IComponentData
 
 public struct Appearance : IComponentData
 {
+    public enum Source { Triangle, Threshold, Gradient }
     public float GridLineBoldness;
     public float GridLineDepth;
     public float GridLineParam;
     public float SamplePointRadius;
     public float SamplePointSnap;
     public float SamplePointParam;
+    public Source SampleSource;
     public float PixelParam;
     public float TriangleParam;
     public float ActiveLayer;

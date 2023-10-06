@@ -19,6 +19,8 @@ public partial struct SamplePointUpdateSystem : ISystem
     {
         var job1 = new SamplePointUpdateJob
         {
+            Space = SystemAPI.GetSingleton<GridSpace>(),
+            Appear = SystemAPI.GetSingleton<Appearance>(),
             Triangle = SystemAPI.GetSingleton<Triangle>()
         };
 
@@ -38,6 +40,8 @@ public partial struct SamplePointUpdateSystem : ISystem
 [BurstCompile]
 partial struct SamplePointUpdateJob : IJobEntity
 {
+    public GridSpace Space;
+    public Appearance Appear;
     public Triangle Triangle;
 
     void Execute(in Layer layer,
@@ -45,9 +49,24 @@ partial struct SamplePointUpdateJob : IJobEntity
                  in SamplePoint point,
                  ref SampleResult result)
     {
-        var pos = point.GetPosition(layer, coords);
-        var hit = TriangleUtil.TestPoint(pos, Triangle);
-        result = new SampleResult{ Hit = hit };
+        if (Appear.SampleSource == Appearance.Source.Threshold)
+        {
+            var hit = coords.Value.x < Space.Dimensions.x / 2;
+            result = new SampleResult{ Hit = hit };
+        }
+        else if (Appear.SampleSource == Appearance.Source.Gradient)
+        {
+            var n = math.pow(2, layer.Index);
+            var x = Space.Dimensions.x - 1 - coords.Value.x;
+            var thresh = n * x / Space.Dimensions.x;
+            result = new SampleResult{ Hit = point.Index < thresh };
+        }
+        else // Appearance.Source.Triangle
+        {
+            var pos = point.GetPosition(layer, coords);
+            var hit = TriangleUtil.TestPoint(pos, Triangle);
+            result = new SampleResult{ Hit = hit };
+        }
     }
 }
 
