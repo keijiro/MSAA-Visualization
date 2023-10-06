@@ -4,6 +4,11 @@ using UnityEngine;
 
 #region Global configuration
 
+public struct SceneConfig : IComponentData
+{
+    public uint Sequence;
+}
+
 public struct GridSpace : IComponentData
 {
     public uint2 Dimensions;

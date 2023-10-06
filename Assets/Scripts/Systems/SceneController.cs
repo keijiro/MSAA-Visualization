@@ -5,10 +5,14 @@ using System;
 
 public partial class SceneControllerSystem : SystemBase
 {
-    protected override void OnCreate()
-      => ControllerFunctionFragments();
+    #region System implementation
 
+    protected override void OnCreate() => RunControllerAsync();
     protected override void OnUpdate() {}
+
+    #endregion
+
+    #region Singleton accessors
 
     Appearance GlobalAppearance {
         get => SystemAPI.GetSingleton<Appearance>();
@@ -20,8 +24,11 @@ public partial class SceneControllerSystem : SystemBase
         set => SystemAPI.SetSingleton<ColorScheme>(value);
     }
 
+    #endregion
 
-    async Awaitable Linear
+    #region Interpolators
+
+    async Awaitable Tween
       (float start, float end, float duration, Action<float> action)
     {
         var t = 0.0f;
@@ -36,11 +43,28 @@ public partial class SceneControllerSystem : SystemBase
         action.Invoke(end);
     }
 
-    async void ControllerFunctionBasics()
+    #endregion
+
+    #region Async controllers
+
+    async void RunControllerAsync()
     {
-        while (!SystemAPI.HasSingleton<Appearance>())
+        // Synchronization with singleton components
+        while (!SystemAPI.HasSingleton<SceneConfig>() ||
+               !SystemAPI.HasSingleton<Appearance>() ||
+               !SystemAPI.HasSingleton<ColorScheme>())
             await Awaitable.NextFrameAsync();
 
+        // Sequence startup
+        switch (SystemAPI.GetSingleton<SceneConfig>().Sequence)
+        {
+            case 0: await RunSequence1Async(); break;
+            case 1: await RunSequence2Async(); break;
+        }
+    }
+
+    async Awaitable RunSequence1Async()
+    {
         var appear = GlobalAppearance;
         appear.GridLineParam = 0;
         appear.SamplePointParam = 0;
@@ -48,7 +72,7 @@ public partial class SceneControllerSystem : SystemBase
         appear.TriangleParam = 0;
         GlobalAppearance = appear;
 
-        await Linear(0, 1, 1.5f, (x) => {
+        await Tween(0, 1, 1.5f, (x) => {
             appear.GridLineParam = x;
             GlobalAppearance = appear;
         });
@@ -57,28 +81,28 @@ public partial class SceneControllerSystem : SystemBase
 
         appear.ActiveLayer = 0;
 
-        await Linear(0, 1, 0.5f, (x) => {
+        await Tween(0, 1, 0.5f, (x) => {
             appear.TriangleParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(0, 1, 1.5f, (x) => {
+        await Tween(0, 1, 1.5f, (x) => {
             appear.SamplePointParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(1, 0, 0.5f, (x) => {
+        await Tween(1, 0, 0.5f, (x) => {
             appear.TriangleParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(0, 1, 1.5f, (x) => {
+        await Tween(0, 1, 1.5f, (x) => {
             appear.PixelParam = x;
             appear.SamplePointParam = 1 + x;
             GlobalAppearance = appear;
@@ -86,7 +110,7 @@ public partial class SceneControllerSystem : SystemBase
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(1, 2, 1.5f, (x) => {
+        await Tween(1, 2, 1.5f, (x) => {
             appear.PixelParam = x;
             GlobalAppearance = appear;
         });
@@ -97,28 +121,28 @@ public partial class SceneControllerSystem : SystemBase
 
         appear.ActiveLayer = 1;
 
-        await Linear(0, 1, 0.5f, (x) => {
+        await Tween(0, 1, 0.5f, (x) => {
             appear.TriangleParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(0, 1, 1.5f, (x) => {
+        await Tween(0, 1, 1.5f, (x) => {
             appear.SamplePointParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(1, 0, 0.5f, (x) => {
+        await Tween(1, 0, 0.5f, (x) => {
             appear.TriangleParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(0, 1, 1.5f, (x) => {
+        await Tween(0, 1, 1.5f, (x) => {
             appear.PixelParam = x;
             appear.SamplePointParam = 1 + x;
             GlobalAppearance = appear;
@@ -128,7 +152,7 @@ public partial class SceneControllerSystem : SystemBase
 
         // x4 MSAA
 
-        await Linear(0, 1, 1.5f, (x) => {
+        await Tween(0, 1, 1.5f, (x) => {
             appear.ActiveLayer = 1 + x;
             appear.SamplePointParam = x;
             appear.TriangleParam = x;
@@ -139,31 +163,28 @@ public partial class SceneControllerSystem : SystemBase
 
         // x8 MSAA
 
-        await Linear(0, 1, 1.5f, (x) => {
+        await Tween(0, 1, 1.5f, (x) => {
             appear.ActiveLayer = 2 + x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(1, 2, 1.5f, (x) => {
+        await Tween(1, 2, 1.5f, (x) => {
             appear.SamplePointParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(1, 0, 0.5f, (x) => {
+        await Tween(1, 0, 0.5f, (x) => {
             appear.TriangleParam = x;
             GlobalAppearance = appear;
         });
     }
 
-    async void ControllerFunctionFragments()
+    async Awaitable RunSequence2Async()
     {
-        while (!SystemAPI.HasSingleton<Appearance>())
-            await Awaitable.NextFrameAsync();
-
         var appear = GlobalAppearance;
         var colors = GlobalColors;
         var palette = colors;
@@ -179,14 +200,14 @@ public partial class SceneControllerSystem : SystemBase
         GlobalAppearance = appear;
         GlobalColors = colors;
 
-        await Linear(0, 1, 1, (x) => {
+        await Tween(0, 1, 1, (x) => {
             appear.SamplePointParam = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(1, 0, 0.2f, (x) => {
+        await Tween(1, 0, 0.2f, (x) => {
             colors.HitColor.a = colors.MissColor.a = x;
             GlobalColors = colors;
         });
@@ -198,28 +219,28 @@ public partial class SceneControllerSystem : SystemBase
 
         colors.HitColor = palette.HitColor;
 
-        await Linear(0, 1, 0.2f, (x) => {
+        await Tween(0, 1, 0.2f, (x) => {
             colors.HitColor.a =  x;
             GlobalColors = colors;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(0, 1, 0.5f, (x) => {
+        await Tween(0, 1, 0.5f, (x) => {
             appear.SamplePointSnap = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(1, 0, 0.5f, (x) => {
+        await Tween(1, 0, 0.5f, (x) => {
             appear.SamplePointSnap = x;
             GlobalAppearance = appear;
         });
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Linear(0, 1, 0.2f, (x) => {
+        await Tween(0, 1, 0.2f, (x) => {
             appear.TriangleParam = 1 - x;
             colors.HitColor.a = 1 - x;
             colors.PixelColor.a = x;
@@ -227,4 +248,6 @@ public partial class SceneControllerSystem : SystemBase
             GlobalColors = colors;
         });
     }
+
+    #endregion
 }
