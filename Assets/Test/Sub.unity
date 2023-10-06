@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e029b4e316987724f8f999744d32b661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 0
+  Sequence: 2
 --- !u!1 &684860202
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitColor: {r: 0.30588236, g: 0.58431375, b: 0.8117648, a: 1}
   MissColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  FocusColor: {r: 0.86666673, g: 0.654902, b: 0.27450982, a: 1}
   LineColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   PixelColor: {r: 0.30588236, g: 0.58431375, b: 0.8117648, a: 1}
   TriangleColor: {r: 0.30522352, g: 0.5861625, b: 0.8117647, a: 0.5294118}

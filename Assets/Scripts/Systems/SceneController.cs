@@ -60,6 +60,7 @@ public partial class SceneControllerSystem : SystemBase
         {
             case 0: await RunSequence1Async(); break;
             case 1: await RunSequence2Async(); break;
+            case 2: await RunSequence3Async(); break;
         }
     }
 
@@ -246,6 +247,91 @@ public partial class SceneControllerSystem : SystemBase
             colors.PixelColor.a = x;
             GlobalAppearance = appear;
             GlobalColors = colors;
+        });
+    }
+
+    async Awaitable RunSequence3Async()
+    {
+        var appear = GlobalAppearance;
+        var colors = GlobalColors;
+        var scheme = colors;
+
+        appear.ActiveLayer = 2;
+        appear.GridLineParam = 1;
+        appear.SamplePointParam = 1;
+        appear.SamplePointSnap = 1;
+        appear.SampleSource = Appearance.Source.Threshold;
+        appear.PixelParam = 0;
+        appear.TriangleParam = 0;
+        colors.HitColor = scheme.MissColor;
+
+        GlobalAppearance = appear;
+        GlobalColors = colors;
+
+        await Tween(1, 0, 0.5f, (x) => {
+            appear.SamplePointSnap = x;
+            GlobalAppearance = appear;
+        });
+
+        await Tween(0, 1, 0.2f, (x) => {
+            colors.HitColor = Color.Lerp(scheme.MissColor, scheme.HitColor, x);
+            GlobalColors = colors;
+        });
+
+        await Tween(0, 1, 0.5f, (x) => {
+            appear.SamplePointSnap = x;
+            GlobalAppearance = appear;
+        });
+
+        await Tween(0, 1, 1.5f, (x) => {
+            appear.PixelParam = x;
+            GlobalAppearance = appear;
+        });
+
+        await Tween(1, 0, 0.5f, (x) => {
+            colors.PixelColor.a = x;
+            GlobalColors = colors;
+        });
+
+        await Tween(0, 1, 0.2f, (x) => {
+            colors.HitColor = Color.Lerp(scheme.HitColor, scheme.MissColor, x);
+            GlobalColors = colors;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        appear.SampleSource = Appearance.Source.Gradient;
+        GlobalAppearance = appear;
+
+        await Tween(0, 1, 0.2f, (x) => {
+            colors.MissColor = colors.HitColor =
+                Color.Lerp(scheme.MissColor, scheme.HitColor, x);
+            GlobalColors = colors;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Tween(0, 1, 0.2f, (x) => {
+            colors.HitColor = Color.Lerp(scheme.HitColor, scheme.FocusColor, x);
+            colors.MissColor = Color.Lerp(scheme.HitColor, scheme.MissColor, x);
+            GlobalColors = colors;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Tween(0, 1, 0.2f, (x) => {
+            colors.HitColor = Color.Lerp(scheme.FocusColor, scheme.HitColor, x);
+            GlobalColors = colors;
+        });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        colors.PixelColor = scheme.PixelColor;
+        GlobalColors = colors;
+
+        await Tween(0, 1, 1.5f, (x) => {
+            appear.PixelParam = x;
+            GlobalAppearance = appear;
         });
     }
 
