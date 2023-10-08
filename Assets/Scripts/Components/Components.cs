@@ -1,5 +1,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Rendering;
 using UnityEngine;
 
 #region Global configuration
@@ -54,6 +55,22 @@ public struct Triangle : IComponentData
     public float2 Vertex1;
     public float2 Vertex2;
     public float2 Vertex3;
+}
+
+#endregion
+
+#region Tags with material override
+
+[MaterialProperty("_BaseColor")]
+public struct GradientTag : IComponentData
+{
+    public Color Color;
+}
+
+[MaterialProperty("_BaseColor")]
+public struct MaskTag : IComponentData
+{
+    public Color Color;
 }
 
 #endregion

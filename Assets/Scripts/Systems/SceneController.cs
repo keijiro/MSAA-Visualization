@@ -1,7 +1,7 @@
+using System;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using System;
 
 public partial class SceneControllerSystem : SystemBase
 {
@@ -23,6 +23,18 @@ public partial class SceneControllerSystem : SystemBase
         get => SystemAPI.GetSingleton<ColorScheme>();
         set => SystemAPI.SetSingleton<ColorScheme>(value);
     }
+
+    #endregion
+
+    #region Material override control
+
+    void SetGradientOpacity(float x)
+      => Entities.ForEach((ref GradientTag tag) =>
+                           tag.Color = new Color(1, 1, 1, x)).Run();
+
+    void SetMaskOpacity(float x)
+      => Entities.ForEach((ref MaskTag tag) =>
+                          tag.Color = new Color(0, 0, 0, x)).Run();
 
     #endregion
 
@@ -268,6 +280,11 @@ public partial class SceneControllerSystem : SystemBase
         GlobalAppearance = appear;
         GlobalColors = colors;
 
+        SetGradientOpacity(0);
+        SetMaskOpacity(0);
+
+        await Tween(0, 0.2f, 0.5f, (x) => SetGradientOpacity(x));
+
         await Tween(1, 0, 0.5f, (x) => {
             appear.SamplePointSnap = x;
             GlobalAppearance = appear;
@@ -316,6 +333,14 @@ public partial class SceneControllerSystem : SystemBase
             colors.MissColor = Color.Lerp(scheme.HitColor, scheme.MissColor, x);
             GlobalColors = colors;
         });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Tween(0, 0.5f, 0.5f, (x) => SetMaskOpacity(x));
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
+        await Tween(0.5f, 0, 0.5f, (x) => SetMaskOpacity(x));
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
