@@ -90,6 +90,8 @@ public partial class SceneControllerSystem : SystemBase
             GlobalAppearance = appear;
         });
 
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
         // No MSAA
 
         appear.ActiveLayer = 0;
