@@ -294,8 +294,6 @@ public partial class SceneControllerSystem : SystemBase
             GlobalAppearance = appear;
         });
 
-        await Awaitable.WaitForSecondsAsync(0.5f);
-
         await Tween(0, 1, 0.2f, (x) => {
             colors.HitColor = Color.Lerp(scheme.MissColor, scheme.HitColor, x);
             GlobalColors = colors;
@@ -308,8 +306,6 @@ public partial class SceneControllerSystem : SystemBase
             GlobalAppearance = appear;
         });
 
-        await Awaitable.WaitForSecondsAsync(0.5f);
-
         await Tween(0, 1, 1.5f, (x) => {
             appear.PixelParam = x;
             GlobalAppearance = appear;
@@ -317,14 +313,8 @@ public partial class SceneControllerSystem : SystemBase
 
         await Awaitable.WaitForSecondsAsync(0.5f);
 
-        await Tween(1, 0, 0.5f, (x) => {
-            colors.PixelColor.a = x;
-            GlobalColors = colors;
-        });
-
-        await Awaitable.WaitForSecondsAsync(0.5f);
-
-        await Tween(0, 1, 0.2f, (x) => {
+        await Tween(0, 1, 0.5f, (x) => {
+            colors.PixelColor.a = 1 - x;
             colors.HitColor = Color.Lerp(scheme.HitColor, scheme.MissColor, x);
             GlobalColors = colors;
         });
@@ -362,8 +352,6 @@ public partial class SceneControllerSystem : SystemBase
             colors.HitColor = Color.Lerp(scheme.FocusColor, scheme.HitColor, x);
             GlobalColors = colors;
         });
-
-        await Awaitable.WaitForSecondsAsync(0.5f);
 
         colors.PixelColor = scheme.PixelColor;
         GlobalColors = colors;
