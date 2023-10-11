@@ -287,30 +287,42 @@ public partial class SceneControllerSystem : SystemBase
 
         await Tween(0, 0.2f, 0.5f, (x) => SetGradientOpacity(x));
 
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
         await Tween(1, 0, 0.5f, (x) => {
             appear.SamplePointSnap = x;
             GlobalAppearance = appear;
         });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
 
         await Tween(0, 1, 0.2f, (x) => {
             colors.HitColor = Color.Lerp(scheme.MissColor, scheme.HitColor, x);
             GlobalColors = colors;
         });
 
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
         await Tween(0, 1, 0.5f, (x) => {
             appear.SamplePointSnap = x;
             GlobalAppearance = appear;
         });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
 
         await Tween(0, 1, 1.5f, (x) => {
             appear.PixelParam = x;
             GlobalAppearance = appear;
         });
 
+        await Awaitable.WaitForSecondsAsync(0.5f);
+
         await Tween(1, 0, 0.5f, (x) => {
             colors.PixelColor.a = x;
             GlobalColors = colors;
         });
+
+        await Awaitable.WaitForSecondsAsync(0.5f);
 
         await Tween(0, 1, 0.2f, (x) => {
             colors.HitColor = Color.Lerp(scheme.HitColor, scheme.MissColor, x);
